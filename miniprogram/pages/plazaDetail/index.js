@@ -32,7 +32,7 @@ Page({
   onShareAppMessage: function () {
     this.onShareAppMessage = 1
     return {
-      title: '牛郎织女鹊桥会 waiting for you 😝',
+      title: '临猗鸳鸯网 waiting for you 😝',
       path: '/pages/plaza/index',
       success: function (res) {
 

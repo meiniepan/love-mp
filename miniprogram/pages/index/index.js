@@ -18,6 +18,7 @@ Page({
     that.loadGirl = true
     that.dbName = 'db_user_list'
     that.pageNum = 0
+
     wx.getSystemInfo({
       success: function(res) {
         let menuRect = wx.getMenuButtonBoundingClientRect()
@@ -27,127 +28,82 @@ Page({
         })
       },
     })
-    wx.startPullDownRefresh({
-      
-    })
+   let listData = []
+    let demo = {avatar:"../../images/girl_0.jpg",nickname:"小美",realnameAuthStatus:"pass",
+      city:"临猗",
+      _id:"232",
+      gender:"2",
+      baseInfoTags: {one:["有房","有车","5000",],two:["大学本科","性格好","会做饭",]},
+      matchInfoTags: ["有房","有车","8000",],
+      realname: {authStatus:"pass"},
+      workPlace:"临猗",age:"25岁",introduce:"阳光开朗",photoAlbum:[{url:"../../images/girl_0.jpg"},{url:"../../images/girl_0.jpg"},{url:"../../images/girl_0.jpg"}]}
+    for (let i = 0; i < 20; i++) {
 
-
-
-
-  },
-  changeCard(){
-    this.loadGirl = !this.loadGirl
-    if(this.loadGirl){
-      this.dbName = 'db_user_list'
-    }else{
-      this.dbName = 'db_user_list_boys'
+    listData.push(demo)
     }
-    this.pageNum = 0
-    wx.startPullDownRefresh({
 
+    that.setData({
+      listData
     })
 
-  },
-  onPullDownRefresh() {
-
-    wx.showLoading({
-      title: '加载中...',
-    })
-    const db = wx.cloud.database()
-    const _ = db.command
-    db.collection(this.dbName).where({
-      age: _.eq('20')
-        .or(_.eq('21'))
-        .or(_.eq('22'))
-        .or(_.eq('23'))
-        .or(_.eq('24'))
-        .or(_.eq('25'))
-        .or(_.eq('26'))
-        .or(_.eq('27'))
-        .or(_.eq('28'))
-        .or(_.eq('29'))
-        .or(_.eq('30'))
-        .or(_.eq('31'))
-        .or(_.eq('19'))
-        .or(_.eq('18'))
-    }).skip(20 * this.pageNum).get().then(res => {
-      this.setData({
-        listData: res.data
-      })
-      wx.stopPullDownRefresh()
-      wx.hideLoading()
-      this.pageNum ++
-    }).catch(e=>{
-      wx.stopPullDownRefresh()
-    })
 
   },
 
-  onReachBottom() {
-    const db = wx.cloud.database()
-    const _ = db.command
-    wx.showLoading({
-      title: '加载中...',
-    })
-    db.collection(this.dbName).where({
-      age: _.eq('20')
-        .or(_.eq('21'))
-        .or(_.eq('22'))
-        .or(_.eq('23'))
-        .or(_.eq('24'))
-        .or(_.eq('25'))
-        .or(_.eq('26'))
-        .or(_.eq('27'))
-        .or(_.eq('28'))
-        .or(_.eq('29'))
-        .or(_.eq('30'))
-        .or(_.eq('31'))
-        .or(_.eq('19'))
-        .or(_.eq('18'))
-    }).skip(20 * this.pageNum).get().then(res => {
-      this.setData({
-        listData: this.data.listData.concat(res.data)
-      })
-      wx.hideLoading()
-      this.pageNum++
-    })
+  // onPullDownRefresh() {
+  //
+  //   wx.showLoading({
+  //     title: '加载中...',
+  //   })
+  //   const db = wx.cloud.database()
+  //   const _ = db.command
+  //   db.collection(this.dbName).where({
+  //     age: _.eq('20')
+  //       .or(_.eq('21'))
+  //
+  //   }).skip(20 * this.pageNum).get().then(res => {
+  //     this.setData({
+  //       listData: res.data
+  //     })
+  //     wx.stopPullDownRefresh()
+  //     wx.hideLoading()
+  //     this.pageNum ++
+  //   }).catch(e=>{
+  //     wx.stopPullDownRefresh()
+  //   })
+  //
+  // },
 
-  },
-  jumpToDetail(item) {
-    wx.setStorage({
-      key: 'uid',
-      data: item.currentTarget.dataset.data._id,
-    })
-    
+  // onReachBottom() {
+  //   const db = wx.cloud.database()
+  //   const _ = db.command
+  //   wx.showLoading({
+  //     title: '加载中...',
+  //   })
+  //   db.collection(this.dbName).where({
+  //     age: _.eq('20')
+  //       .or(_.eq('21'))
+  //
+  //   }).skip(20 * this.pageNum).get().then(res => {
+  //     this.setData({
+  //       listData: this.data.listData.concat(res.data)
+  //     })
+  //     wx.hideLoading()
+  //     this.pageNum++
+  //   })
+  //
+  // },
+  jumpToDetail(e) {
+    let data = e.currentTarget.dataset.data;
     wx.navigateTo({
-      url: '../userDetail/index',
+      url: '../userDetail/index?data='  + JSON.stringify(data),
     })
   },
 
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
-  },
+
   onShareAppMessage: function () {
     this.onShareAppMessage = 1
     return {
-      title: '牛郎织女鹊桥会 waiting for you 😝',
+      title: '临猗鸳鸯网 waiting for you 😝',
       path: '/pages/index/index',
       success: function (res) {
 

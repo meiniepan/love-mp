@@ -8,9 +8,6 @@
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
     "pages/info/index",
     "pages/plazaDetail/index",
     "pages/report/index"
@@ -29,7 +26,7 @@
       },
       {
         "pagePath": "pages/plaza/index",
-        "text": "广场",
+        "text": "消息",
         "iconPath": "/images/tabBar_02_nom.png",
         "selectedIconPath": "/images/tabBar_02_sec.png"
       },

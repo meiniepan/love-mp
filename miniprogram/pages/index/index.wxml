@@ -1,12 +1,12 @@
 <view class="headView" style='height:{{systemInfoObj.statusBarHeight+44}}px'>
-  <text style="margin-top:{{menuRect.top}}px;line-height:{{menuRect.height}}px">鹊桥会</text>
+  <text style="margin-top:{{menuRect.top}}px;line-height:{{menuRect.height}}px">临猗鸳鸯</text>
 </view>
 <view class="listView" style="margin-top:{{systemInfoObj.statusBarHeight+44}}px">
   <view class="titleView">推荐
   </view>
-  <view class="listCell" catchtap="jumpToDetail" data-data="{{item}}" wx:key="{{item.userId}}" wx:for="{{listData}}">
+  <view class="listCell" catchtap="jumpToDetail" data-data="{{item}}" wx:key="index" wx:for="{{listData}}">
     <view class="content">
-      <image lazy-load="" class="icon" src="{{item.avatar.url}}"></image>
+      <image lazy-load="" class="icon" src="{{item.avatar}}"></image>
       <view class="infoView">
         <view class="info">
           <text class="nickName">{{item.nickname}}</text>
@@ -18,7 +18,5 @@
     </view>
   </view>
 </view>
-
-<image catchtap="changeCard" class="changeCard" src="../../images/changeCard.png"></image>
 
 
