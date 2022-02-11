@@ -113,9 +113,32 @@
   line-height: 80rpx;
   position: relative;
 }
-
+.infoCell2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding-right: 30rpx;
+  padding-left: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+.introduce {
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+  padding-right: 30rpx;
+  padding-left: 30rpx;
+  height: 200rpx;
+}
+.intro{
+  background: var(--tintBac);
+  border-radius: 20rpx;
+  margin-top: 10rpx;
+  padding: 20rpx;
+}
 .infoCell .left {
-  color: #666;
+  color: var(--commonHint);
 }
 
 .infoCell .right {
@@ -126,9 +149,9 @@
   color: #333;
 }
 
-.infoCell input {
+.infoCell2 input {
   height: 100%;
-  text-align: center;
+  text-align: right;
   width: 500rpx;
 }
 

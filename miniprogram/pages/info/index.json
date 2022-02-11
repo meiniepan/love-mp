@@ -2,6 +2,6 @@
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "我的资料",
   "usingComponents": {
-      "info-items": "../components/info_items/index"
+      "info-items": "../../components/info_items/index"
   }
 }

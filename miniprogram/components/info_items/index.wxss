@@ -14,9 +14,19 @@
   line-height: 80rpx;
   position: relative;
 }
+.infoCell2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding-right: 30rpx;
+  padding-left: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: relative;
+}
 
 .infoCell .left {
-  color: #666;
+  color: var(--commonHint);
 }
 
 .infoCell .right {
@@ -27,9 +37,9 @@
   color: #333;
 }
 
-.infoCell input {
+.infoCell2 input {
   height: 100%;
-  text-align: center;
+  text-align: right;
   width: 500rpx;
 }
 
