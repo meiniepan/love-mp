@@ -14,6 +14,15 @@ Page({
   },
 
   onLoad: function() {
+    app.checkUpdate()
+    let openid = wx.getStorageSync("openid")
+    if (openid.length == 0) {
+      openid = app.getOpenid()
+    }
+    this.setData({
+      openid: openid
+    })
+
     let that = this
     that.loadGirl = true
     that.dbName = 'db_user_list'
@@ -33,8 +42,8 @@ Page({
       city:"临猗",
       _id:"232",
       gender:"2",
-      baseInfoTags: {one:["有房","有车","5000",],two:["大学本科","性格好","会做饭",]},
-      matchInfoTags: ["有房","有车","8000",],
+      baseInfoTags: [{value:"有房"},{value:""},{value:"有2房"},],
+      matchInfoTags: [{value:"有房"},{value:""},{value:"有2房"},],
       realname: {authStatus:"pass"},
       workPlace:"临猗",age:"25岁",introduce:"阳光开朗",photoAlbum:[{url:"../../images/girl_0.jpg"},{url:"../../images/girl_0.jpg"},{url:"../../images/girl_0.jpg"}]}
     for (let i = 0; i < 20; i++) {

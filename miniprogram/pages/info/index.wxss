@@ -1,12 +1,17 @@
 /* pages/userConsole/userConsole.wxss */
-
+.update{
+  color: var(--themeColor);
+  border-radius: 10rpx;
+  padding:2rpx 15rpx;
+  border: solid 1rpx var(--themeColor);
+}
 .head {
   display: flex;
   flex-direction: column;
   background-color: #f8f8f8;
 }
 
-.head .fistIcon {
+.head .avatar {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,12 +22,13 @@
   position: relative;
 }
 
-.fistIcon .logo {
+.avatar .logo {
+  border-radius: 50%;
   height: 150rpx;
   width: 150rpx;
 }
 
-.fistIcon .changeIcon {
+.avatar .changeIcon {
   height: 40rpx;
   width: 40rpx;
   position: absolute;
@@ -82,12 +88,14 @@
   width: 40rpx;
   position: absolute;
   z-index: 10;
-  right: 0;
+  right: -10rpx;
+  top: -10rpx;
 }
 .img .photo{
   width: 160rpx;
   height: 160rpx;
   position: absolute;
+  border-radius: 20rpx;
   z-index: 9;
 }
 

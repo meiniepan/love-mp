@@ -1,0 +1,5 @@
+<!--pages/splash/splash.wxml-->
+<view class="out">
+    <image class="img" src="../../images/splash.jpg" mode="aspectFill"/>
+</view>
+

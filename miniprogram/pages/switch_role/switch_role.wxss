@@ -1,0 +1,52 @@
+/* pages/switch_role/switch_role.wxss */
+.image{
+    width: 100%;
+    height: calc(100vh - 600rpx);
+}
+.text1{
+    font-size: 72rpx;
+    font-weight: bold;
+}
+.text2{
+    font-size: 32rpx;
+    margin-top: 32rpx;
+    margin-top: 32rpx;
+    font-weight: bold;
+}
+.space1{
+    width: 140rpx;
+    height: 4rpx;
+    background-color: var(--commonBlack);
+    margin-top: 32rpx;
+}
+.bottom{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    border-top-left-radius: 80rpx;
+    background-color: var(--white);
+    border-top-right-radius: 80rpx;
+    padding: 80rpx var(--titlePadding) 100rpx;
+}
+.btn{margin-bottom: 20rpx;}
+.btn2{
+    width: 400rpx;
+    margin-bottom: 20rpx;}
+.input{
+    margin: 0rpx var(--titlePadding) 20rpx ;
+    border: solid 1rpx var(--themeColor);
+    border-radius: 10rpx;
+    padding: 10rpx;
+}
+.mark-out{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}

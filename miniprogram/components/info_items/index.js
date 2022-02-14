@@ -1,5 +1,11 @@
 Component({
     properties: {
+        mData: {
+            type: Object,
+            value: {
+
+            },
+        },
         isSelf: {
             type: Boolean,
             value: false,
@@ -45,21 +51,41 @@ Component({
 
         doInput: function (e) {
             let type = e.currentTarget.dataset.type;
+            let index = e.currentTarget.dataset.index;
+            this.properties.mData.baseInfoTags[index].value = e.detail.value
+            let infos = this.properties.mData.baseInfoTags
             this.setData({
-                [type]: e.detail.value
+                mData: this.properties.mData
             }, () => {
-                this.changeData({type:type,value:e.detail.value})
+                this.changeData({type: 0, value: infos})
             });
         },
 
-        bindHeightChange(e) {
+        changeBaseInfo(e) {
             let type = e.currentTarget.dataset.type;
             let data = e.currentTarget.dataset.data;
+            let index = e.currentTarget.dataset.index;
             let p = e.detail.value
+            this.properties.mData.baseInfoTags[index].value = data[p]
+            let infos = this.properties.mData.baseInfoTags
+            console.log("data",this.properties.mData)
             this.setData({
-                [type]: data[p]
+                mData: this.properties.mData
             }, () => {
-                this.changeData({type:type,value:data[p]})
+                this.changeData({type: 0, value: infos})
+            })
+        },
+        changeMatchInfo(e) {
+            let type = e.currentTarget.dataset.type;
+            let data = e.currentTarget.dataset.data;
+            let index = e.currentTarget.dataset.index;
+            let p = e.detail.value
+            this.properties.mData.matchInfoTags[index].value = data[p]
+            let infos = this.properties.mData.matchInfoTags
+            this.setData({
+                mData: this.properties.mData
+            }, () => {
+                this.changeData({type: 1, value: infos})
             })
         },
 
@@ -93,9 +119,7 @@ Component({
     data: {
         defaultIndex: 0,
 
-        mData: {earning: "",
-            earning: "",
-            job: "",},
+
         ageArray: [],
         heightForPerson: [],
         weightForPerson: [],

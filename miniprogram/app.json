@@ -1,13 +1,16 @@
 {
+  "cloud": true,
   "pages": [
+    "pages/splash/splash",
+    "pages/switch_role/switch_role",
     "pages/index/index",
     "pages/mine/index",
     "pages/userNeedKnow/index",
     "pages/plaza/index",
+    "pages/matchMaker/matchMaker",
+    "pages/makerRes/makerRes",
+    "pages/addMaker/addMaker",
     "pages/userDetail/index",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
     "pages/info/index",
     "pages/plazaDetail/index",
     "pages/report/index"
@@ -23,6 +26,12 @@
         "text": "推荐",
         "iconPath": "/images/tabBar_01_nom.png",
         "selectedIconPath": "/images/tabBar_01_sec.png"
+      },
+      {
+        "pagePath": "pages/matchMaker/matchMaker",
+        "text": "红娘",
+        "iconPath": "/images/tabBar_maker_nom.png",
+        "selectedIconPath": "/images/tabBar_maker_sec.png"
       },
       {
         "pagePath": "pages/plaza/index",
@@ -45,5 +54,6 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
 }

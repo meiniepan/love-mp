@@ -1,5 +1,5 @@
 <view class="detail">
-  <image catchtap="backClick" class="backIcon" style="top:{{menuRect.top+4}}px;" src="../../images/app_back.png"></image>
+  <image catchtap="backClick" class="backIcon" mode="widthFix" style="top:{{menuRect.top+4}}px;" src="../../images/icon_back_black_a.png"></image>
   <swiper indicator-dots="{{userModel.photoAlbum.length>1}}" easing-function="linear" circular="true" autoplay="true"  interval="8000">
     <block wx:for="{{userModel.photoAlbum}}" wx:key="*this">
       <swiper-item>
@@ -31,15 +31,14 @@
     <view class="introduce">
       <text class="title">个人资料</text>
       <view class="tags">
-        <text wx:key="{{item}}" wx:for="{{userModel.baseInfoTags.one}}">{{item}}</text>
-        <text wx:key="{{item}}" wx:for="{{userModel.baseInfoTags.two}}">{{item}}</text>
+        <text wx:key="{{item}}" wx:for="{{userModel.baseInfoTags}}"  wx:if="{{item.value.length>0}}">{{item.value}}</text>
       </view>
     </view>
 
     <view class="introduce" style="margin-bottom:100rpx">
       <text class="title">择偶标准</text>
       <view class="tags">
-        <text wx:key="{{item}}" wx:for="{{userModel.matchInfoTags}}">{{item}}</text>
+        <text wx:key="{{item}}" wx:for="{{userModel.matchInfoTags}}" wx:if="{{item.value.length>0}}" >{{item.value}}</text>
       </view>
     </view>
 

@@ -1,0 +1,20 @@
+<!--pages/makerRes/makerRes.wxml-->
+<view class="out">
+    <view class="listView" style="margin-top:{{20}}rpx">
+        <view class="listCell" catchtap="jumpToDetail" data-data="{{item}}" wx:key="index" wx:for="{{listData}}">
+            <view class="content">
+                <image lazy-load="" class="icon" src="{{item.avatar}}"></image>
+                <view class="infoView">
+                    <view class="info">
+                        <text class="nickName">{{item.nickname}}</text>
+                        <text class="shiMing" wx:if="{{item.realnameAuthStatus=='pass'}}">红娘认证</text>
+                    </view>
+                    <text class="addressAndAge">{{item.workPlace}} {{item.age}}</text>
+                    <text class="introduce">{{item.introduce}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<image class="addBtn" bindtap="doAdd" src="../../images/ic_add_common.png"
+       mode="widthFix"></image>

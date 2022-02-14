@@ -1,20 +1,25 @@
+<view class="out">
+<navigation title="{{title}}" bgColor="white">
+  <image class="act" src="../../images/icon_back_black_a.png" mode="widthFix" bindtap="doFinish"></image>
+  <text class="update" bindtap="doUpdate">发布</text>
+</navigation>
 <view class='head'>
-  <view class="fistIcon">
-    <image class="logo" src="../../images/user-unlogin.png"></image>
+  <view class="avatar">
+    <image class="logo" src="{{mData.avatar}}"></image>
     <text>封面头像</text>
-    <image class="changeIcon" src="../../images/change_icon.png"></image>
+    <image class="changeIcon" bindtap="addAvatar" src="../../images/change_icon.png"></image>
   </view>
   <view class="photos">
     <view class="title">相册
-      <text>(最多8张)</text>
+      <text>(最多5张)</text>
     </view>
     <view class="images">
-      <view class="img">
-        <image class="addImageBtn" src="../../images/add_images_btn.png"></image>
-        <image class="removeImageBtn" src="../../images/remove_images_btn.png"></image>
+      <view class="img" wx:for="{{mData.photoAlbum}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+        <image class="photo" src="{{item.url}}"></image>
+        <image class="removeImageBtn" data-position="idx" bindtap="delPic" src="../../images/remove_images_btn.png"></image>
       </view>
-      <view class="img">
-        <image class="addImageBtn" src="../../images/add_images_btn.png"></image>
+      <view class="img" bindtap="addPic">
+        <image class="addImageBtn"  src="../../images/add_images_btn.png"></image>
       </view>
     </view>
   </view>
@@ -24,7 +29,7 @@
   <view class="infoTitle">基本资料</view>
   <view class="infoCell2">
     <text class="left hint">昵称</text>
-    <input data-type="nickName" class="nickName right" placeholder="请输入您的昵称" bindinput="doInput" maxlength="8"></input>
+    <input data-type="nickName" value="{{mData.nickName}}" class="nickName right" placeholder="请输入昵称" bindinput="doInput" maxlength="8"></input>
   </view>
   <view class="infoCell">
     <text class="left">性别</text>
@@ -65,7 +70,7 @@
 
   <view class="introduce bottom">
     <text class="left hint">内心独白</text>
-    <textarea data-type="introduce" class="intro" bindinput="doInput" placeholder="介绍一下你自己吧~" ></textarea>
+    <textarea data-type="introduce" value="{{mData.introduce}}" maxlength="100" class="intro" bindinput="doInput" placeholder="介绍一下吧~" ></textarea>
   </view>
 
 </view>
@@ -83,5 +88,6 @@
 
     <view class="descMessege">完善相亲信息，能大幅度提升曝光度和匹配度哦~</view>
   </view>
-  <info-items class="{{tabItemViewFix?'itemFixCell':''}}" bindchangeData="changeData" isSelf="{{tabItemAt==0}}"></info-items>
+  <info-items mData="{{mData}}" class="{{tabItemViewFix?'itemFixCell':''}}" bindchangeData="changeData" isSelf="{{tabItemAt==0}}"></info-items>
+</view>
 </view>

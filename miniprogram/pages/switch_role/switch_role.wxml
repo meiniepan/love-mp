@@ -1,0 +1,21 @@
+<!--pages/switch_role/switch_role.wxml-->
+<view class="out">
+    <image class="image" src="../../images/splash.jpg" mode="widthFix"/>
+    <view class="bottom">
+        <view class="text1">欢迎！</view>
+        <text class="text2" >选择您的身份 </text>
+        <view class="space1"></view>
+        <commonButton bindtap="btn1" class="btn" text="男生" style="margin-top: 90rpx"/>
+        <commonButton bindtap="btn2" class="btn" text="女生" style="margin-top: 32rpx"/>
+        <commonButton bindtap="btn3" class="btn" text="红娘" style="margin-top: 32rpx"/>
+        <commonButton bindtap="btn4" class="btn" text="管理员" style="margin-top: 32rpx"/>
+    </view>
+</view>
+<modal show="{{showModal}}" height='500rpx'>
+    　　
+        <view class="mark-out">
+            <input data-type="phone" style="margin-top: 20rpx" class="input" placeholder="请输入手机号" bindinput="doInput" maxlength="11"/>
+            <input data-type="pwd"  class="input" placeholder="请输入登录密码" bindinput="doInput" maxlength="8"/>
+            <commonButton mType="0" bindtap="doLogin" class="btn2" text="登录" style="margin-top: 50rpx"/>
+        </view>
+</modal>

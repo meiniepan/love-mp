@@ -1,6 +1,5 @@
 {
-  "navigationStyle": "custom",
-  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "消息",
   "backgroundTextStyle": "dark",
   "usingComponents": {}
 }

@@ -1,0 +1,8 @@
+<!--pages/addMaker/addMaker.wxml-->
+<view class="out">
+    <input data-type="name" style="margin-top: 20rpx" class="input" placeholder="请输入姓名" bindinput="doInput" maxlength="8"/>
+    <input data-type="phone"  class="input" placeholder="请输入电话" bindinput="doInput" maxlength="11"/>
+</view>
+<view class="bottom">
+    <view class="confirm" bindtap="doConfirm">提交</view>
+</view>

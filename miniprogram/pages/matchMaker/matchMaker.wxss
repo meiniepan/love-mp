@@ -1,0 +1,51 @@
+/* pages/matchMaker/matchMaker.wxss */
+page{
+    background-color: var(--tintBac);
+}
+.cells0{
+
+}
+.name{
+
+}
+.cell0{
+
+}
+.cells1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: var(--titlePadding);
+    margin-right: var(--titlePadding);
+    margin-bottom: 40rpx;
+}
+.cell1{
+    width: 315rpx;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 40rpx;
+    padding: 40rpx;
+    margin-top: 40rpx;
+}
+.cell1 image{
+    width: 56rpx;
+    height: 56rpx;
+}
+.cell1 .text1{
+    font-size: 32rpx;
+    font-weight: bold;
+}
+.cell1 .text2{
+    margin-top: 8rpx;
+    font-size: 24rpx;
+    color: var(--commonHint);
+}
+.addBtn{
+    position: fixed;
+    bottom: 128rpx;
+    right: var(--titlePadding);
+    width: 136rpx;
+    height: 136rpx;
+}

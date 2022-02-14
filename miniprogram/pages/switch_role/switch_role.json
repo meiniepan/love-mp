@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "commonButton": "/components/commonButton/commonButton",
+    "modal": "/components/modal/modal"
+  },
+  "navigationStyle":"custom"
+}

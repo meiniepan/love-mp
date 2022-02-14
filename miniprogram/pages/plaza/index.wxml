@@ -1,4 +1,2 @@
-<view class="headView" style='height:{{systemInfoObj.statusBarHeight+44}}px'>
-  <text style="margin-top:{{menuRect.top}}px;line-height:{{menuRect.height}}px">消息</text>
-</view>
-<view style="margin-top: 200rpx;margin-left: 40rpx">还没有收到聊天消息</view>
+
+<view style="margin-top: 44rpx;margin-left: 40rpx">还没有收到聊天消息</view>

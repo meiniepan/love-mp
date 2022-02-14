@@ -5,8 +5,9 @@
 
 .backIcon {
   position: fixed;
-  width: 50rpx;
-  height: 50rpx;
+  width: 20rpx;
+  height: 20rpx;
+  padding: 20rpx;
   z-index: 100;
   left: 20rpx;
 }

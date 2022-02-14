@@ -2,9 +2,9 @@
   <block wx:if='{{isSelf}}'>
     <view class="infoCell">
       <text class="left">月收入</text>
-      <picker data-type="earning" data-data="{{earningArray}}" value="" range="{{earningArray}}" bindchange="bindHeightChange">
+      <picker data-index="0" data-type="earning" data-data="{{earningArray}}" value="" range="{{earningArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{earning}}
+          {{mData.baseInfoTags[0].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -13,15 +13,15 @@
     <view class="infoCell2">
       <text class="hint">职业</text>
       <view class="birthday">
-      <input data-type="job" placeholder="请输入职业" maxlength="8" bindinput="doInput"/>
+      <input data-index="1" data-type="job" value="{{mData.baseInfoTags[1].value}}" placeholder="请输入职业" maxlength="8" bindinput="doInput"/>
       </view>
     </view>
 
     <view class="infoCell">
       <text class="left">学历</text>
-      <picker data-type="school" data-data="{{schoolAge}}" value="" range="{{schoolAge}}" bindchange="bindHeightChange">
+      <picker data-index="2" data-type="school" data-data="{{schoolAge}}" value="" range="{{schoolAge}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{school}}
+          {{mData.baseInfoTags[2].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -29,9 +29,9 @@
 
     <view class="infoCell">
       <text class="left">婚姻状态</text>
-      <picker data-type="marriage" data-data="{{marriageArray}}" value="" range="{{marriageArray}}" bindchange="bindHeightChange">
+      <picker data-index="3" data-type="marriage" data-data="{{marriageArray}}" value="" range="{{marriageArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{marriage}}
+          {{mData.baseInfoTags[3].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -39,9 +39,9 @@
 
     <view class="infoCell">
       <text class="left">有没有小孩</text>
-      <picker data-type="hasBaby" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}" bindchange="bindHeightChange">
+      <picker data-index="4" data-type="hasBaby" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{hasBaby}}
+          {{mData.baseInfoTags[4].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -50,9 +50,9 @@
 
     <view class="infoCell">
       <text class="left">是否要小孩</text>
-      <picker data-type="needBaby" data-data="{{needBabyArray}}" value="" range="{{needBabyArray}}" bindchange="bindHeightChange">
+      <picker data-index="5" data-type="needBaby" data-data="{{needBabyArray}}" value="" range="{{needBabyArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{needBaby}}
+          {{mData.baseInfoTags[5].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -60,9 +60,9 @@
 
     <view class="infoCell">
       <text class="left">住房情况</text>
-      <picker data-type="house" data-data="{{houseArray}}" value="" range="{{houseArray}}" bindchange="bindHeightChange">
+      <picker data-index="6" data-type="house" data-data="{{houseArray}}" value="" range="{{houseArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{house}}
+          {{mData.baseInfoTags[6].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -71,9 +71,9 @@
 
     <view class="infoCell">
       <text class="left">买车情况</text>
-      <picker data-type="car" data-data="{{carArray}}" value="" range="{{carArray}}" bindchange="bindHeightChange">
+      <picker data-index="7" data-type="car" data-data="{{carArray}}" value="" range="{{carArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{car}}
+          {{mData.baseInfoTags[7].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -81,9 +81,9 @@
 
     <view class="infoCell">
       <text class="left">籍贯</text>
-      <picker data-type="town" data-data="{{townArray}}" bindchange="bindHeightChange" value="" range="{{townArray}}" >
+      <picker data-index="8" data-type="town" data-data="{{townArray}}" bindchange="changeBaseInfo" value="" range="{{townArray}}" >
         <view class="birthday">
-          {{town}}
+          {{mData.baseInfoTags[8].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -93,9 +93,9 @@
 
     <view class="infoCell">
       <text class="left">体重</text>
-      <picker data-type="weight" data-data="{{weightForPerson}}" value="" range="{{weightForPerson}}" bindchange="bindHeightChange">
+      <picker data-index="9" data-type="weight" data-data="{{weightForPerson}}" value="" range="{{weightForPerson}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{weight}}
+          {{mData.baseInfoTags[9].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -104,9 +104,9 @@
 
     <view class="infoCell">
       <text class="left">体型</text>
-      <picker data-type="bodily" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="bindHeightChange">
+      <picker data-index="10" data-type="bodily" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{bodily}}
+          {{mData.baseInfoTags[10].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -115,9 +115,9 @@
 
     <view class="infoCell">
       <text class="left">民族</text>
-      <picker data-type="nationality" data-data="{{nationalityArray}}" value="" range="{{nationalityArray}}" bindchange="bindHeightChange">
+      <picker data-index="11" data-type="nationality" data-data="{{nationalityArray}}" value="" range="{{nationalityArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{nationality}}
+          {{mData.baseInfoTags[11].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -126,9 +126,9 @@
 
     <view class="infoCell">
       <text class="left">何时结婚</text>
-      <picker data-type="whatTimeMarry" data-data="{{whatTimeMarryArray}}" value="" range="{{whatTimeMarryArray}}" bindchange="bindHeightChange">
+      <picker data-index="12" data-type="whatTimeMarry" data-data="{{whatTimeMarryArray}}" value="" range="{{whatTimeMarryArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{whatTimeMarry}}
+          {{mData.baseInfoTags[12].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -137,32 +137,23 @@
 
     <view class="infoCell">
       <text class="left">是否吸烟</text>
-      <picker data-type="smoke" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="bindHeightChange">
+      <picker data-index="13" data-type="smoke" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
-          {{smoke}}
+          {{mData.baseInfoTags[13].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
     </view>
 
-    <view class="infoCell">
-      <text class="left">是否喝酒</text>
-      <picker data-type="drink" data-data="{{drinkArray}}" value="" range="{{drinkArray}}" bindchange="bindHeightChange">
-        <view class="birthday">
-          {{drink}}
-        </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
   </block>
 
 
   <block wx:else>
   <view class="infoCell">
       <text class="left">年龄</text>
-      <picker data-type="age2" data-data="{{ageArray}}" value="" range="{{ageArray}}" bindchange="bindHeightChange">
+      <picker data-index="0" data-type="age2" data-data="{{ageArray}}" value="" range="{{ageArray}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{age2}}
+          {{mData.matchInfoTags[0].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -171,9 +162,9 @@
 
     <view class="infoCell">
       <text class="left">身高</text>
-      <picker data-type="height2" data-data="{{heightForPerson}}" value="" range="{{heightForPerson}}" bindchange="bindHeightChange">
+      <picker data-index="1" data-type="height2" data-data="{{heightForPerson}}" value="" range="{{heightForPerson}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{height2}}
+          {{mData.matchInfoTags[1].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -181,9 +172,9 @@
 
     <view class="infoCell">
       <text class="left">月收入</text>
-      <picker data-type="earning2" data-data="{{earningArray}}" value="" range="{{earningArray}}" bindchange="bindHeightChange">
+      <picker data-index="2" data-type="earning2" data-data="{{earningArray}}" value="" range="{{earningArray}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{earning2}}
+          {{mData.matchInfoTags[2].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -192,9 +183,9 @@
 
     <view class="infoCell">
       <text class="left">学历</text>
-      <picker data-type="school2" data-data="{{schoolAge}}" value="" range="{{schoolAge}}" bindchange="bindHeightChange">
+      <picker data-index="3" data-type="school2" data-data="{{schoolAge}}" value="" range="{{schoolAge}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{school2}}
+          {{mData.matchInfoTags[3].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -203,9 +194,9 @@
 
     <view class="infoCell">
       <text class="left">婚姻状态</text>
-      <picker data-type="marriage2" data-data="{{marriageArray}}" value="" range="{{marriageArray}}" bindchange="bindHeightChange">
+      <picker data-index="4" data-type="marriage2" data-data="{{marriageArray}}" value="" range="{{marriageArray}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{marriage2}}
+          {{mData.matchInfoTags[4].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -214,9 +205,9 @@
 
     <view class="infoCell">
       <text class="left">体型</text>
-      <picker data-type="bodily2" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="bindHeightChange">
+      <picker data-index="5" data-type="bodily2" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{bodily2}}
+          {{mData.matchInfoTags[5].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -225,9 +216,9 @@
 
        <view class="infoCell">
       <text class="left">工作地区</text>
-      <picker data-type="town2" data-data="{{townArray}}" bindchange="bindHeightChange" value="{{townArray}}">
+      <picker data-index="6" data-type="town2" data-data="{{townArray}}" bindchange="changeMatchInfo" value="{{townArray}}">
         <view class="birthday">
-          {{town2}}
+          {{mData.matchInfoTags[6].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -236,9 +227,9 @@
 
   <view class="infoCell">
       <text class="left">有没有小孩</text>
-      <picker data-type="hasBaby2" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}" bindchange="bindHeightChange">
+      <picker data-index="7" data-type="hasBaby2" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{hasBaby2}}
+          {{mData.matchInfoTags[7].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -247,9 +238,9 @@
 
     <view class="infoCell">
       <text class="left">是否要小孩</text>
-      <picker data-type="needBaby2" data-data="{{needBabyArray}}" value="" range="{{needBabyArray}}" bindchange="bindHeightChange">
+      <picker data-index="8" data-type="needBaby2" data-data="{{needBabyArray}}" value="" range="{{needBabyArray}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{needBaby2}}
+          {{mData.matchInfoTags[8].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
@@ -258,23 +249,14 @@
 
   <view class="infoCell">
       <text class="left">是否吸烟</text>
-      <picker data-type="smoke2" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="bindHeightChange">
+      <picker data-index="9" data-type="smoke2" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="changeMatchInfo">
         <view class="birthday">
-          {{smoke2}}
+          {{mData.matchInfoTags[9].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>
     </view>
 
-    <view class="infoCell">
-      <text class="left">是否喝酒</text>
-      <picker data-type="drink2" data-data="{{drinkArray}}" value="" range="{{drinkArray}}" bindchange="bindHeightChange">
-        <view class="birthday">
-          {{drink2}}
-        </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
   </block>
 </view>
