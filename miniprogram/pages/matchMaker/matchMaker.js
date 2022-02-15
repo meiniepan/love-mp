@@ -61,9 +61,10 @@ Page({
 
     },
 
-    doClick() {
+    doClick(e) {
+        let phone = e.currentTarget.dataset.item.phone
         wx.navigateTo({
-            url: '/pages/makerRes/makerRes'
+            url: '/pages/makerRes/makerRes?phone='+phone
         })
     },
     doAdd() {

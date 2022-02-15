@@ -101,6 +101,7 @@ Page({
                             showModal: false
                         })
                         wx.setStorageSync("user_type", user_type)
+                        wx.setStorageSync("phone",this.data.phone)
                         wx.switchTab({
                             url: '/pages/index/index',
                         })

@@ -5,7 +5,7 @@
 </navigation>
 <view class='head'>
   <view class="avatar">
-    <image class="logo" src="{{mData.avatar}}"></image>
+    <image class="logo" src="{{mData.avatar.url}}"></image>
     <text>封面头像</text>
     <image class="changeIcon" bindtap="addAvatar" src="../../images/change_icon.png"></image>
   </view>
@@ -16,7 +16,7 @@
     <view class="images">
       <view class="img" wx:for="{{mData.photoAlbum}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
         <image class="photo" src="{{item.url}}"></image>
-        <image class="removeImageBtn" data-position="idx" bindtap="delPic" src="../../images/remove_images_btn.png"></image>
+        <image class="removeImageBtn" data-position="{{idx}}" bindtap="delPic" src="../../images/remove_images_btn.png"></image>
       </view>
       <view class="img" bindtap="addPic">
         <image class="addImageBtn"  src="../../images/add_images_btn.png"></image>
@@ -33,12 +33,15 @@
   </view>
   <view class="infoCell">
     <text class="left">性别</text>
-    <text class="right">{{sex}}</text>
+    <picker data-type="sex" data-data="{{sexArray}}" value="" range="{{sexArray}}" bindchange="bindHeightChange">
+    <text class="right">{{mData.sex}}</text>
+    <image class="right_gay" src="../../images/right_gay.png"></image>
+    </picker>
   </view>
 
   <view class="infoCell">
     <text class="left">生日</text>
-    <picker data-type="birthday"  mode="date" value="" bindchange="bindDateChange">
+    <picker data-type="birthday"  mode="date" value="{{mData.birthday}}" bindchange="bindDateChange">
       <view class="birthday">
         {{mData.birthday}}
       </view>
@@ -49,7 +52,7 @@
 
   <view class="infoCell">
     <text class="left">身高</text>
-    <picker data-type="height" data-data="{{heightForPerson}}" value="{{height}}" range="{{heightForPerson}}" bindchange="bindHeightChange">
+    <picker data-type="height" data-data="{{heightForPerson}}" value="20" range="{{heightForPerson}}" bindchange="bindHeightChange">
       <view class="birthday">
         {{mData.height}}
       </view>

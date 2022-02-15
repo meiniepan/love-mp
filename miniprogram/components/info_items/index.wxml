@@ -162,7 +162,7 @@
 
     <view class="infoCell">
       <text class="left">身高</text>
-      <picker data-index="1" data-type="height2" data-data="{{heightForPerson}}" value="" range="{{heightForPerson}}" bindchange="changeMatchInfo">
+      <picker data-index="1" data-type="height2" data-data="{{heightForPerson}}" value="30" range="{{heightForPerson}}" bindchange="changeMatchInfo">
         <view class="birthday">
           {{mData.matchInfoTags[1].value}}
         </view>

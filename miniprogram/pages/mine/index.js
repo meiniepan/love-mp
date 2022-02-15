@@ -31,7 +31,7 @@ Page({
             })
         } else if (e.currentTarget.dataset.item == "红娘资源") {
             wx.navigateTo({
-                url: '../makerRes/makerRes',
+                url: '../makerRes/makerRes?type=me',
             })
         }else if (e.currentTarget.dataset.item == "切换身份") {
             wx.setStorageSync("user_type","")

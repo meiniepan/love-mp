@@ -2,11 +2,11 @@
 <view class="listView" style="margin-top:{{20}}rpx">
   <view class="listCell" catchtap="jumpToDetail" data-data="{{item}}" wx:key="index" wx:for="{{listData}}">
     <view class="content">
-      <image lazy-load="" class="icon" src="{{item.avatar}}"></image>
+      <image lazy-load="" class="icon" src="{{item.avatar.url}}"></image>
       <view class="infoView">
         <view class="info">
-          <text class="nickName">{{item.nickname}}</text>
-          <text class="shiMing" wx:if="{{item.realnameAuthStatus=='pass'}}">红娘认证</text>
+          <text class="nickName">{{item.nickName}}</text>
+          <text class="shiMing" wx:if="{{item.maker_phone.length>0}}">红娘认证</text>
         </view>
         <text class="addressAndAge">{{item.workPlace}} {{item.age}}</text>
         <text class="introduce">{{item.introduce}}</text>

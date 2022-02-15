@@ -12,10 +12,10 @@
     <view class="head">
           <text class="nickname">{{userModel.nickname}}</text>
     <view class="bottom">
-      <text class="city items">{{userModel.city}}</text>
-      <text class="age items">{{userModel.age}}岁</text>
-      <text class="sex items">{{userModel.gender==2?'女':'男'}}</text>
-      <text wx:if="{{userModel.realname.authStatus=='pass'}}" class="authStatus items">已实名</text>
+      <text class="city items">{{userModel.town}}</text>
+      <text class="age items">{{userModel.age}}</text>
+      <text class="sex items">{{userModel.sex}}</text>
+      <text wx:if="{{userModel.maker_phone.length>0}}" class="authStatus items">红娘认证</text>
       <text wx:if="{{userModel.mobile}}" class="tel items">联系方式已认证</text>
     </view>
       <text catchlongtap="copyIdNum" class="idNum bottom">ID:{{userModel._id}} </text>
@@ -31,14 +31,14 @@
     <view class="introduce">
       <text class="title">个人资料</text>
       <view class="tags">
-        <text wx:key="{{item}}" wx:for="{{userModel.baseInfoTags}}"  wx:if="{{item.value.length>0}}">{{item.value}}</text>
+        <text  wx:for="{{userModel.baseInfoTags}}" wx:key="index"  wx:if="{{item.value.length>0}}">{{item.value}}</text>
       </view>
     </view>
 
     <view class="introduce" style="margin-bottom:100rpx">
       <text class="title">择偶标准</text>
       <view class="tags">
-        <text wx:key="{{item}}" wx:for="{{userModel.matchInfoTags}}" wx:if="{{item.value.length>0}}" >{{item.value}}</text>
+        <text wx:for="{{userModel.matchInfoTags}}" wx:key="index" wx:if="{{item.value.length>0}}" >{{item.value}}</text>
       </view>
     </view>
 

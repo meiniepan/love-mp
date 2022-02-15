@@ -12,13 +12,15 @@ Component({
         },
     },
     ready() {
-        for (let index = 120; index < 212; index++) {
+        for (let index = 140; index < 210; index++) {
             this.data.heightForPerson.push(index + 'cm')
         }
 
-        for (let index = 20; index < 99; index++) {
-            this.data.ageArray.push(index + '岁')
-        }
+            this.data.ageArray.push("相差3岁以内")
+            this.data.ageArray.push("相差5岁以内")
+            this.data.ageArray.push("相差10岁以内")
+            this.data.ageArray.push("相差20岁以内")
+            this.data.ageArray.push("不限")
 
         for (let index = 40; index < 131; index++) {
             let str = index

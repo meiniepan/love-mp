@@ -53,7 +53,7 @@ App({
     })
   },
 
-  onAdd: function (collectionName, data) {
+  onAdd: function (collectionName, data,func) {
     const db = wx.cloud.database()
 
     wx.showLoading({
@@ -63,8 +63,8 @@ App({
       data: data,
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
-        this.onQuery(collectionName)
         wx.hideLoading()
+        func()
         wx.showToast({
           title: '新增数据成功',
         })
