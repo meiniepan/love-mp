@@ -58,11 +58,11 @@
     font-size: 15rpx;
     margin-left: 15rpx;
     height: 20rpx;
-    width: 35rpx;
     text-align: center;
     border-radius: 5rpx;
+    padding: 4rpx;
     line-height: 20rpx;
-    background:linear-gradient(227deg,rgb(126, 170, 206) 0%,rgb(34, 23, 175) 100%);
+    background:var(--linearBac);
 }
 .infoView .addressAndAge{
     color: #626262;

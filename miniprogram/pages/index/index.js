@@ -1,4 +1,5 @@
 //index.js
+const consts = require("../../utils/consts");
 const app = getApp()
 
 Page({
@@ -24,9 +25,9 @@ Page({
         })
 
         let that = this
-        that.dbName = 'db_person'
         that.pageNum = 0
         wx.startPullDownRefresh()
+
     },
 
     onPullDownRefresh() {
@@ -51,14 +52,26 @@ Page({
         } else {
             condition = {}
         }
-        db.collection(this.dbName)
+        db.collection(consts.db_person)
             .orderBy('order', 'desc')
             .where(condition).skip(20 * this.pageNum)
             .limit(20).get()
             .then(res => {
-                console.log("res", res)
                 if (res.data.length > 0) {
-                    this.getUrl(res.data, () => {
+                    res.data.forEach(it => {
+                        let place = it.workPlace.split(",")
+
+                        if (place.length == 3) {
+                            if (place[1] == "运城市") {
+                                it.workPlace = place[2]
+                            } else if (place[0] == "山西省") {
+                                it.workPlace = place[1]
+                            } else {
+                                it.workPlace = place[0]
+                            }
+                        }
+                    })
+                    app.getUrl(res.data, () => {
                         this.setData({
                             listData: res.data
                         })
@@ -72,6 +85,7 @@ Page({
                 }
 
             }).catch(e => {
+            console.log("e", e)
             wx.stopPullDownRefresh()
         })
 
@@ -98,7 +112,7 @@ Page({
         } else {
             condition = {}
         }
-        db.collection(this.dbName)
+        db.collection(consts.db_person)
             .orderBy('order', 'desc')
             .where(condition).skip(20 * this.pageNum)
             .limit(20).get()
@@ -111,7 +125,19 @@ Page({
                     wx.hideLoading()
                     this.pageNum++
                 } else {
-                    this.getUrl(res.data, () => {
+                    res.data.forEach(it => {
+                        let place = it.workPlace.split(",")
+                        if (place.length == 3) {
+                            if (place[1] == "运城市") {
+                                it.workPlace = place[2]
+                            } else if (place[0] == "山西省") {
+                                it.workPlace = place[1]
+                            } else {
+                                it.workPlace = place[0]
+                            }
+                        }
+                    })
+                    app.getUrl(res.data, () => {
                         this.setData({
                             listData: this.data.listData.concat(res.data)
                         })
@@ -126,33 +152,7 @@ Page({
 
     },
 
-    getUrl(array, func) {
-        let num = 0
-        array.forEach(it => {
-            let place = it.workPlace.split(",")
-            if (place.length == 3) {
-                if (place[1] == "运城市") {
-                    it.workPlace = place[2]
-                } else if (place[0] == "山西省") {
-                    it.workPlace = place[1]
-                } else {
-                    it.workPlace = place[0]
-                }
-            }
-            wx.cloud.downloadFile({
-                fileID: it.avatar.fileID, // 文件 ID
-                success: res => {
-                    // 返回临时文件路径
-                    it.avatar.url = res.tempFilePath
-                    num++
-                    if (num == array.length) {
-                        func()
-                    }
-                },
-                fail: console.error
-            })
-        })
-    },
+
     jumpToDetail(e) {
         let data = e.currentTarget.dataset.data;
         wx.navigateTo({
@@ -172,55 +172,6 @@ Page({
             fail: function (res) {
             }
         }
-    },
-    // 上传图片
-    doUpload: function () {
-        // 选择图片
-        wx.chooseImage({
-            count: 1,
-            sizeType: ['compressed'],
-            sourceType: ['album', 'camera'],
-            success: function (res) {
-
-                wx.showLoading({
-                    title: '上传中',
-                })
-
-                const filePath = res.tempFilePaths[0]
-
-                // 上传图片
-                const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-                wx.cloud.uploadFile({
-                    cloudPath,
-                    filePath,
-                    success: res => {
-                        console.log('[上传文件] 成功：', res)
-
-                        app.globalData.fileID = res.fileID
-                        app.globalData.cloudPath = cloudPath
-                        app.globalData.imagePath = filePath
-
-                        wx.navigateTo({
-                            url: '../storageConsole/storageConsole'
-                        })
-                    },
-                    fail: e => {
-                        console.error('[上传文件] 失败：', e)
-                        wx.showToast({
-                            icon: 'none',
-                            title: '上传失败',
-                        })
-                    },
-                    complete: () => {
-                        wx.hideLoading()
-                    }
-                })
-
-            },
-            fail: e => {
-                console.error(e)
-            }
-        })
     },
 
 })

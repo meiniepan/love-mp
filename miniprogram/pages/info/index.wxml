@@ -5,7 +5,7 @@
 </navigation>
 <view class='head'>
   <view class="avatar">
-    <image class="logo" src="{{mData.avatar.url}}"></image>
+    <image class="logo" mode="aspectFill" src="{{mData.avatar.url}}"></image>
     <text>封面头像</text>
     <image class="changeIcon" bindtap="addAvatar" src="../../images/change_icon.png"></image>
   </view>
@@ -15,7 +15,7 @@
     </view>
     <view class="images">
       <view class="img" wx:for="{{mData.photoAlbum}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-        <image class="photo" src="{{item.url}}"></image>
+        <image class="photo" mode="aspectFill" src="{{item.avatar.url}}"></image>
         <image class="removeImageBtn" data-position="{{idx}}" bindtap="delPic" src="../../images/remove_images_btn.png"></image>
       </view>
       <view class="img" bindtap="addPic">
@@ -36,6 +36,15 @@
     <picker data-type="sex" data-data="{{sexArray}}" value="" range="{{sexArray}}" bindchange="bindHeightChange">
     <text class="right">{{mData.sex}}</text>
     <image class="right_gay" src="../../images/right_gay.png"></image>
+    </picker>
+  </view>
+  <view class="infoCell">
+    <text class="left">籍贯</text>
+    <picker  data-type="town" data-data="{{townArray}}" bindchange="bindHeightChange" value="" range="{{townArray}}" >
+      <view class="birthday">
+        {{mData.town}}
+      </view>
+      <image class="right_gay" src="../../images/right_gay.png"></image>
     </picker>
   </view>
 

@@ -1,5 +1,6 @@
 // pages/matchMaker/matchMaker.js
 const consts = require("../../utils/consts");
+const {showModal} = require("../../utils/util");
 const app = getApp()
 Page({
 
@@ -20,6 +21,24 @@ Page({
                 canAdd: true,
             })
         }
+        this.getData()
+
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
+    },
+    getData() {
         const db = wx.cloud.database()
         // 查询当前用户所有的 counters
         wx.showLoading({
@@ -44,28 +63,28 @@ Page({
                 console.error('[数据库] [查询记录] 失败：', err)
             }
         })
-
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
     doClick(e) {
         let phone = e.currentTarget.dataset.item.phone
         wx.navigateTo({
-            url: '/pages/makerRes/makerRes?phone='+phone
+            url: '/pages/makerRes/makerRes?phone=' + phone
         })
+    },
+    del(e) {
+        if (wx.getStorageSync("user_type") == "manager") {
+            let item = e.currentTarget.dataset.item
+            showModal(
+                "删除此位红娘",
+                "温馨提示",
+                (res) => {
+                    if (res.confirm) {
+                        app.onDelete(consts.db_makers, item._id, () => {
+                            this.getData()
+                        })
+                    }
+                }
+            )
+        }
     },
     doAdd() {
         wx.navigateTo({

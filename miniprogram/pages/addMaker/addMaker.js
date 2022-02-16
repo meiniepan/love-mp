@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        mData: {code: "", name: "", phone: "",pwd:"88888888"}
+        mData: {code: "", name: "", phone: "",pwd:"88888888",order:"0"}
     },
 
     /**
@@ -67,7 +67,16 @@ Page({
                 } else {
                     this.data.mData.code = "0001"
                 }
-                app.onAdd("match_makers", this.data.mData)
+                app.onAdd("match_makers", this.data.mData,()=>{
+                    wx.showToast({
+                        title: '新增数据成功',
+                    })
+                    let pages = getCurrentPages()
+                    pages[pages.length-2].getData()
+                    wx.navigateBack({
+                        delta: 1,
+                    })
+                })
             },
             fail: err => {
                 wx.hideLoading()

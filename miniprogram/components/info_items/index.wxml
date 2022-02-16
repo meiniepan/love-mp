@@ -80,8 +80,8 @@
     </view>
 
     <view class="infoCell">
-      <text class="left">籍贯</text>
-      <picker data-index="8" data-type="town" data-data="{{townArray}}" bindchange="changeBaseInfo" value="" range="{{townArray}}" >
+      <text class="left">体重</text>
+      <picker data-index="8" data-type="weight" data-data="{{weightForPerson}}" value="" range="{{weightForPerson}}" bindchange="changeBaseInfo">
         <view class="birthday">
           {{mData.baseInfoTags[8].value}}
         </view>
@@ -90,10 +90,9 @@
     </view>
 
 
-
     <view class="infoCell">
-      <text class="left">体重</text>
-      <picker data-index="9" data-type="weight" data-data="{{weightForPerson}}" value="" range="{{weightForPerson}}" bindchange="changeBaseInfo">
+      <text class="left">体型</text>
+      <picker data-index="9" data-type="bodily" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="changeBaseInfo">
         <view class="birthday">
           {{mData.baseInfoTags[9].value}}
         </view>
@@ -103,8 +102,8 @@
 
 
     <view class="infoCell">
-      <text class="left">体型</text>
-      <picker data-index="10" data-type="bodily" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="changeBaseInfo">
+      <text class="left">民族</text>
+      <picker data-index="10" data-type="nationality" data-data="{{nationalityArray}}" value="" range="{{nationalityArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
           {{mData.baseInfoTags[10].value}}
         </view>
@@ -114,8 +113,8 @@
 
 
     <view class="infoCell">
-      <text class="left">民族</text>
-      <picker data-index="11" data-type="nationality" data-data="{{nationalityArray}}" value="" range="{{nationalityArray}}" bindchange="changeBaseInfo">
+      <text class="left">何时结婚</text>
+      <picker data-index="11" data-type="whatTimeMarry" data-data="{{whatTimeMarryArray}}" value="" range="{{whatTimeMarryArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
           {{mData.baseInfoTags[11].value}}
         </view>
@@ -125,21 +124,10 @@
 
 
     <view class="infoCell">
-      <text class="left">何时结婚</text>
-      <picker data-index="12" data-type="whatTimeMarry" data-data="{{whatTimeMarryArray}}" value="" range="{{whatTimeMarryArray}}" bindchange="changeBaseInfo">
+      <text class="left">是否吸烟</text>
+      <picker data-index="12" data-type="smoke" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="changeBaseInfo">
         <view class="birthday">
           {{mData.baseInfoTags[12].value}}
-        </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
-
-
-    <view class="infoCell">
-      <text class="left">是否吸烟</text>
-      <picker data-index="13" data-type="smoke" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[13].value}}
         </view>
         <image class="right_gay" src="../../images/right_gay.png"></image>
       </picker>

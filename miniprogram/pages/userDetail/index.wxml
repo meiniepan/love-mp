@@ -1,16 +1,15 @@
 <view class="detail">
   <image catchtap="backClick" class="backIcon" mode="widthFix" style="top:{{menuRect.top+4}}px;" src="../../images/icon_back_black_a.png"></image>
   <swiper indicator-dots="{{userModel.photoAlbum.length>1}}" easing-function="linear" circular="true" autoplay="true"  interval="8000">
-    <block wx:for="{{userModel.photoAlbum}}" wx:key="*this">
+    <block wx:for="{{userModel.photoAlbum}}" wx:key="index">
       <swiper-item>
-        <image catchtap="previewImage" data-url="{{item.url}}" lazy-load="" mode="aspectFill" class="swiper-item" src="{{item.url}}"></image>
+        <image catchtap="previewImage" data-url="{{item.avatar.url}}" lazy-load="" mode="aspectFill" class="swiper-item" src="{{item.avatar.url}}"></image>
       </swiper-item>
     </block>
   </swiper>
-      <view catchtap="reportClick" class="report">举报</view>
   <view class="infoView">
     <view class="head">
-          <text class="nickname">{{userModel.nickname}}</text>
+          <text class="nickname">{{userModel.nickName}}</text>
     <view class="bottom">
       <text class="city items">{{userModel.town}}</text>
       <text class="age items">{{userModel.age}}</text>
@@ -46,9 +45,8 @@
   </view>
  
    <view class="bottomView" >
-    <button  open-type="contact" send-message-title="{{userDetail.nickname}}" send-message-img="{{userDetail.avatar.url}}" send-message-path="/pages/userDetail/index?uid={{uid}}" bindcontact='contact' show-message-card plain bindcontact="handleContact">
-    <text>马上联系Ta</text>
-    </button>
+    <text wx:if="{{contactMessage}}" class="contact" catchtap="doContact">马上联系Ta</text>
+    <text wx:if="{{contactMaker}}" class="contact" catchtap="doContactMaker">联系Ta的红娘</text>
   </view>
 </view>
 

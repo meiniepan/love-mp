@@ -64,10 +64,8 @@ App({
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
         wx.hideLoading()
+
         func()
-        wx.showToast({
-          title: '新增数据成功',
-        })
       },
       fail: err => {
         wx.hideLoading()
@@ -138,14 +136,14 @@ App({
     })
   },
 
-  onDelete: function (collection, id) {
+  onDelete: function (collection, id,func) {
     const db = wx.cloud.database()
     db.collection(collection).doc(id).remove({
       success: res => {
         wx.showToast({
           title: '删除成功',
         })
-        this.onQuery(collection)
+        func()
       },
       fail: err => {
         wx.showToast({
@@ -154,6 +152,53 @@ App({
         })
         console.error('[数据库] [删除记录] 失败：', err)
       }
+    })
+  },
+
+  getUrl(array, func) {
+    let num = 0
+    let fileArray = wx.getStorageSync("file_array")
+    if (fileArray instanceof Array){
+
+    }else {
+      fileArray = []
+    }
+    console.log("array",array)
+    array.forEach(it => {
+
+      let has = false
+      let index = 0
+      for (let i = 0; i < fileArray.length; i++) {
+        if (fileArray[i][0]==it.avatar.fileID){
+          has = true
+          index = i
+          break
+        }
+      }
+
+      if (has) {
+        it.avatar.url = fileArray[index][1]
+        num++
+        if (num == array.length) {
+          func()
+        }
+      } else {
+        wx.cloud.downloadFile({
+          fileID: it.avatar.fileID, // 文件 ID
+          success: res => {
+            // 返回临时文件路径
+            fileArray.push([it.avatar.fileID,res.tempFilePath])
+            wx.setStorageSync("file_array",fileArray)
+            it.avatar.url = res.tempFilePath
+            num++
+            if (num == array.length) {
+              func()
+            }
+          },
+          fail: console.error
+        })
+      }
+
     })
   },
 

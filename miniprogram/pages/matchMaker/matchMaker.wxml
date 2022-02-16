@@ -1,7 +1,7 @@
 <!--pages/matchMaker/matchMaker.wxml-->
 <view class="out">
     <view class="cells1">
-        <view class="cell1" wx:for="{{mData}}" wx:key="index" data-item="{{item}}" bindtap="doClick">
+        <view class="cell1" wx:for="{{mData}}" wx:key="index" data-item="{{item}}" catchlongpress="del" bindtap="doClick">
 
             <text class="text1">{{item.name}}</text>
             <text class="text2">{{item.code}}</text>

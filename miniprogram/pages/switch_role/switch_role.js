@@ -102,6 +102,7 @@ Page({
                         })
                         wx.setStorageSync("user_type", user_type)
                         wx.setStorageSync("phone",this.data.phone)
+                        wx.setStorageSync("maker_info",this.data)
                         wx.switchTab({
                             url: '/pages/index/index',
                         })

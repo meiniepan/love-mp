@@ -1,11 +1,14 @@
 // pages/makerRes/makerRes.js
+const consts = require("../../utils/consts");
+const {showModal} = require("../../utils/util");
+const app = getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        mData:[],
+        listData:[],
         phone:"",
         canAdd:false,
     },
@@ -24,27 +27,43 @@ Page({
 
         }
         this.setData({
-            phone: options.phone,
+            phone: phone,
             canAdd,
+        },()=>{
+        this.getData()
         })
-        this.getData(phone)
     },
 
-    getData(phone) {
+    getData() {
         const db = wx.cloud.database()
         // 查询当前用户所有的 counters
         wx.showLoading({
             title: '加载中',
         })
-        db.collection("db_person").where({
-            maker_phone: phone
+        db.collection(consts.db_person).where({
+            maker_phone: this.data.phone
         }).get({
             success: res => {
                 wx.hideLoading()
                 console.log("res", res)
                 if (res.data.length > 0) {
-                    this.setData({
-                        mData:res.data
+                    res.data.forEach(it=>{
+                            let place = it.workPlace.split(",")
+                            if (place.length == 3) {
+                                if (place[1] == "运城市") {
+                                    it.workPlace = place[2]
+                                } else if (place[0] == "山西省") {
+                                    it.workPlace = place[1]
+                                } else {
+                                    it.workPlace = place[0]
+                                }
+                            }
+                    })
+                    app.getUrl(res.data, () => {
+                        console.log("deal")
+                        this.setData({
+                            listData: res.data
+                        })
                     })
                 } else {
 
@@ -71,6 +90,31 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+
+    },
+
+    jumpToDetail(e) {
+        let data = e.currentTarget.dataset.data;
+        if (this.data.canAdd){
+            if (data.photoAlbum.length > 0) {
+                app.getUrl(data.photoAlbum, () => {
+                    wx.setStorageSync("my_userinfo", data)
+                    wx.navigateTo({
+                        url: '../info/index?type=view&id='+this.data.phone,
+                    })
+                })
+            } else {
+                wx.setStorageSync("my_userinfo", data)
+                wx.navigateTo({
+                    url: '../info/index?type=view&id='+this.data.phone,
+                })
+            }
+
+        }else {
+            wx.navigateTo({
+                url: '../userDetail/index?data=' + JSON.stringify(data),
+            })
+        }
 
     },
 

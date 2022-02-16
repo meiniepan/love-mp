@@ -1,3 +1,4 @@
+const consts = require("../../utils/consts");
 const app = getApp()
 Page({
 
@@ -18,13 +19,36 @@ Page({
                 {key: "school2"}, {key: "marriage2"}, {key: "bodily2"},
                 {key: "town2"}, {key: "hasBaby2"}, {key: "needBaby2"},
                 {key: "smoke2"},],
+            nickName: "",
             maker_phone: "",
+            height: "160cm",
             sex: "",
+            town: "县城",
             birthday: '1995-01-01',
+            workPlace: "山西省,运城市,临猗县",
+            introduce: "这位用户很懒，什么也没说！",
             age: '1995-01-01',
-            order:"0",
+            order: "0",
         },
         region: ['山西省', '运城市', '临猗县'],
+        townArray: [
+            '孙吉镇',
+            '县城',
+            '嵋阳镇',
+            '临晋镇',
+            '七级镇',
+            '东张镇',
+            '三管镇',
+            '牛杜镇',
+            '耽子镇',
+            '楚侯乡',
+            '庙上乡',
+            '北辛乡',
+            '北景乡',
+            '猗氏镇',
+            '角杯乡',
+            '其他',
+        ],
         sexArray: ["女", "男"],
         birthday: '1995-01-01',
 
@@ -51,30 +75,36 @@ Page({
         } else if (options.type == "view") {
             if (options.id == "me") {
                 let json = wx.getStorageSync("my_userinfo")
-                if (json.length == 0) {
-                    this.query()
+                if (json instanceof Object) {
+                    let mData = json
+                    this.setData({
+                        mData
+                    })
                 } else {
-                    let mData = JSON.parse(json)
-                    console.log("data", mData)
+                    this.query()
+                }
+
+            } else {
+                let json = wx.getStorageSync("my_userinfo")
+                if (json instanceof Object) {
+                    let mData = json
                     this.setData({
                         mData
                     })
                 }
-
-            } else {
             }
 
         }
         this.data.mData.sex = wx.getStorageSync("user_type") == "boy" ? "男" : "女"
-        let birth = this.data.mData.birthday.substring(0,4)
+        let birth = this.data.mData.birthday.substring(0, 4)
         let aa = new Date().getFullYear()
         let age = aa - birth
-        this.data.mData.age = age +"岁"
+        this.data.mData.age = age + "岁"
         this.setData({
             type: options.type,
+            type2: options.id,
             mData: this.data.mData,
         })
-        let userInfoDefaultModel = wx.getStorageSync('userInfoDefaultModel')
         for (let index = 140; index < 190; index++) {
             this.data.heightForPerson.push(index + 'cm')
         }
@@ -108,18 +138,37 @@ Page({
 
 
     doUpdate() {
-
+        if (this.data.mData.avatar.url == "../../images/user-unlogin.png") {
+            wx.showToast({
+                icon: 'none',
+                title: '必须有头像！'
+            })
+            return
+        } else if (this.data.mData.photoAlbum.length == 0) {
+            wx.showToast({
+                icon: 'none',
+                title: '至少上传一张图片！'
+            })
+            return
+        }else if (this.data.mData.nickName == "") {
+            wx.showToast({
+                icon: 'none',
+                title: '请填写昵称！'
+            })
+            return
+        }
         if (this.data.type == "new") {
             this.dbAdd("new")
         } else if (this.data.type == "view") {
+
             let json = wx.getStorageSync("my_userinfo")
-            if (json.length == 0) {
-                this.dbAdd("view")
+            if (json instanceof Object) {
+                this.update()
             } else {
-                this.update("view")
+                this.dbAdd("view")
             }
         }
-        wx.setStorageSync("my_userinfo", JSON.stringify(this.data.mData))
+        wx.setStorageSync("my_userinfo", this.data.mData)
 
     },
     query() {
@@ -133,12 +182,26 @@ Page({
         }).get({
             success: res => {
                 wx.hideLoading()
-                console.log("res", res)
+
                 if (res.data.length > 0) {
-                    wx.setStorageSync("my_userinfo", res)
-                    this.setData({
-                        mData: res.data
+                    app.getUrl(res.data, () => {
+                        console.log("res", res)
+                        if (res.data[0].photoAlbum.length > 0) {
+                            app.getUrl(res.data[0].photoAlbum, () => {
+                                wx.setStorageSync("my_userinfo", res.data[0])
+                                this.setData({
+                                    mData: res.data[0]
+                                })
+                            })
+                        } else {
+                            wx.setStorageSync("my_userinfo", res.data[0])
+                            this.setData({
+                                mData: res.data[0]
+                            })
+                        }
+
                     })
+
                 } else {
 
                 }
@@ -153,12 +216,17 @@ Page({
             }
         })
     },
-    update(type) {
+    update() {
+        let condition = {_id: this.data.mData._id}
+
+        delete (this.data.mData["_id"])
+        delete (this.data.mData["_openid"])
+        console.log("condition", condition)
         const db = wx.cloud.database()
         wx.showLoading({
             title: '更新中',
         })
-        db.collection('db_person').doc(wx.getStorageSync("openid")).update({
+        db.collection(consts.db_person).where(condition).update({
             data: this.data.mData,
 
             success: res => {
@@ -167,6 +235,8 @@ Page({
                     icon: 'none',
                     title: '更新数据成功'
                 })
+                let pages = getCurrentPages()
+                pages[pages.length - 2].getData()
                 this.doFinish()
                 console.error('[数据库] [更新记录] 成功：', res)
             },
@@ -181,9 +251,12 @@ Page({
         })
     },
     dbAdd(type) {
-        app.onAdd("db_person", this.data.mData, () => {
+        app.onAdd(consts.db_person, this.data.mData, () => {
             if (type == "view") {
-                wx.setStorageSync("my_userinfo", JSON.stringify(this.data.mData))
+                wx.setStorageSync("my_userinfo", this.data.mData)
+            } else if (type == "new") {
+                let pages = getCurrentPages()
+                pages[pages.length - 2].getData()
             }
             this.doFinish()
             wx.showToast({
@@ -209,7 +282,7 @@ Page({
                     success: res => {
                         // 返回文件 ID
                         wx.hideLoading()
-                        this.data.mData.photoAlbum.push({url: res0.tempFilePaths[0], fileID: res.fileID})
+                        this.data.mData.photoAlbum.push({avatar: {url: res0.tempFilePaths[0], fileID: res.fileID}})
                         console.log("photoAlbum", this.data.mData.photoAlbum)
                         this.setData({
                             mData: this.data.mData
@@ -254,7 +327,7 @@ Page({
     delPic(e) {
         let p = e.currentTarget.dataset.position
         console.log("p", p)
-        this.removeCloudFile(this.data.mData.photoAlbum[p].fileID, () => {
+        this.removeCloudFile(this.data.mData.photoAlbum[p].avatar.fileID, () => {
             this.data.mData.photoAlbum.splice(p, 1)
             this.setData({
                 mData: this.data.mData
@@ -342,11 +415,11 @@ Page({
         let type = e.currentTarget.dataset.type;
         let data = e.currentTarget.dataset.data;
         let p = e.detail.value
-        if (type == "birthday"){
-            let birth = data[p].substring(0,4)
+        if (type == "birthday") {
+            let birth = data[p].substring(0, 4)
             let aa = new Date().getFullYear()
             let age = aa - birth
-            this.data.mData.age = age+"岁"
+            this.data.mData.age = age + "岁"
         }
         this.data.mData.[type] = data[p]
         this.setData({

@@ -1,0 +1,9 @@
+/* pages/makerInfo/makerInfo.wxss */
+.item{
+    margin: 20rpx var(--titlePadding);
+    padding: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20rpx;
+    border: solid 1rpx var(--themeColor);
+}

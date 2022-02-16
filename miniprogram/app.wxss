@@ -1,12 +1,6 @@
 /**app.wxss**/
 page {
 
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-
   --themeColor: #1677FF;
   --tintBac: #F5F7FD;
   --BaseBac: rgb(125,124,117,0.6);
@@ -26,6 +20,7 @@ page {
   --orange: #FF9040;
 
   --themeBac: linear-gradient(to right, #445FF5, #6D0BBD);
+  --linearBac:linear-gradient(227deg,pink 0%,rgb(34, 23, 175) 100%);
   --titlePadding: 46rpx;
   --textHeight: 88rpx;
   --maxWidth: 500rpx;

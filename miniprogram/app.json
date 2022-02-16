@@ -12,6 +12,8 @@
     "pages/addMaker/addMaker",
     "pages/userDetail/index",
     "pages/info/index",
+    "pages/makerInfo/makerInfo",
+    "pages/lickList/lickList",
     "pages/plazaDetail/index",
     "pages/report/index"
   ],

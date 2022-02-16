@@ -22,9 +22,16 @@ Page({
 
     jumpToDetail(e) {
         if (e.currentTarget.dataset.item == "我的资料") {
-            wx.navigateTo({
-                url: '../info/index?type=view&id=me',
-            })
+            if (this.data.isMaker){
+                wx.navigateTo({
+                    url: '../makerInfo/makerInfo',
+                })
+            }else {
+                wx.navigateTo({
+                    url: '../info/index?type=view&id=me',
+                })
+            }
+
         } else if (e.currentTarget.dataset.item == "交友须知") {
             wx.navigateTo({
                 url: '../userNeedKnow/index',
@@ -37,6 +44,14 @@ Page({
             wx.setStorageSync("user_type","")
             wx.redirectTo({
                 url: '/pages/switch_role/switch_role',
+            })
+        }else if (e.currentTarget.dataset.item == "关注我的") {
+            wx.navigateTo({
+                url: '../lickList/lickList?type=关注我的',
+            })
+        }else if (e.currentTarget.dataset.item == "我的关注") {
+            wx.navigateTo({
+                url: '../lickList/lickList?type=我的关注',
             })
         }
     },
