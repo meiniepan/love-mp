@@ -1,6 +1,7 @@
 <!--pages/matchMaker/matchMaker.wxml-->
 <view class="out">
-    <view class="cells1">
+    <emptyView wx:if="{{isEmpty}}"/>
+    <view class="cells1" wx:else>
         <view class="cell1" wx:for="{{mData}}" wx:key="index" data-item="{{item}}" catchlongpress="del" bindtap="doClick">
 
             <text class="text1">{{item.name}}</text>

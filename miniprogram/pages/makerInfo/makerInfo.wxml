@@ -12,4 +12,18 @@
         <text class="text">手机号</text>
         <text class="text">{{mData.phone}}</text>
     </view>
+    <view class="bottom" wx:if="{{!isManager}}">
+        <view class="confirm" bindtap="doConfirm">修改密码</view>
+    </view>
 </view>
+
+
+
+<modal show="{{showModal}}" height='500rpx'>
+    　　
+    <view class="mark-out">
+        <input data-type="pwd1" style="margin-top: 20rpx" class="input" placeholder="请输入新密码" bindinput="doInput" maxlength="11"/>
+        <input data-type="pwd2"  class="input" placeholder="请再次输入新密码" bindinput="doInput" maxlength="8"/>
+        <commonButton mType="0" bindtap="doChange" class="btn2" text="确认修改" style="margin-top: 50rpx"/>
+    </view>
+</modal>

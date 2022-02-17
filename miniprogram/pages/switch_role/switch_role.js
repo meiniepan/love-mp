@@ -94,7 +94,7 @@ Page({
                 wx.hideLoading()
                 console.log("res", res)
                 if (res.data.length > 0) {
-                    let pwd = res.data[res.data.length - 1].pwd
+                    let pwd = res.data[0].pwd
                     console.log("pwd", pwd)
                     if (pwd == this.data.pwd) {
                         this.setData({
@@ -102,7 +102,7 @@ Page({
                         })
                         wx.setStorageSync("user_type", user_type)
                         wx.setStorageSync("phone",this.data.phone)
-                        wx.setStorageSync("maker_info",this.data)
+                        wx.setStorageSync("maker_info",res.data[0])
                         wx.switchTab({
                             url: '/pages/index/index',
                         })

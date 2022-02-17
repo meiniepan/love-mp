@@ -31,7 +31,7 @@
       },
       {
         "pagePath": "pages/matchMaker/matchMaker",
-        "text": "红娘",
+        "text": "爱心",
         "iconPath": "/images/tabBar_maker_nom.png",
         "selectedIconPath": "/images/tabBar_maker_sec.png"
       },

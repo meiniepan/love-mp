@@ -40,9 +40,23 @@ Page({
         wx.showLoading({
             title: '加载中',
         })
-        db.collection(consts.db_person).where({
-            maker_phone: this.data.phone
-        }).get({
+        let condition = {}
+        if (wx.getStorageSync("user_type") == "boy") {
+            condition = {
+                sex: "女",
+            }
+        } else if (wx.getStorageSync("user_type") == "girl") {
+            condition = {
+                sex: "男",
+            }
+        } else {
+            condition = {
+            }
+        }
+        db.collection(consts.db_person)
+            .where(condition)
+            .where({ maker_phone: this.data.phone})
+            .get({
             success: res => {
                 wx.hideLoading()
                 console.log("res", res)
@@ -79,6 +93,24 @@ Page({
             }
         })
     },
+
+    del(e) {
+        if (wx.getStorageSync("user_type") == "manager"||wx.getStorageSync("user_type") == "maker") {
+            let item = e.currentTarget.dataset.item
+            showModal(
+                "删除这条数据？",
+                "温馨提示",
+                (res) => {
+                    if (res.confirm) {
+                        app.onDelete(consts.db_person, item._id, () => {
+                            this.getData()
+                        })
+                    }
+                }
+            )
+        }
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

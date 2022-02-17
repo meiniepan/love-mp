@@ -1,105 +1,122 @@
 <view class="out">
-<navigation title="{{title}}" bgColor="white">
-  <image class="act" src="../../images/icon_back_black_a.png" mode="widthFix" bindtap="doFinish"></image>
-  <text class="update" bindtap="doUpdate">发布</text>
-</navigation>
-<view class='head'>
-  <view class="avatar">
-    <image class="logo" mode="aspectFill" src="{{mData.avatar.url}}"></image>
-    <text>封面头像</text>
-    <image class="changeIcon" bindtap="addAvatar" src="../../images/change_icon.png"></image>
-  </view>
-  <view class="photos">
-    <view class="title">相册
-      <text>(最多5张)</text>
-    </view>
-    <view class="images">
-      <view class="img" wx:for="{{mData.photoAlbum}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-        <image class="photo" mode="aspectFill" src="{{item.avatar.url}}"></image>
-        <image class="removeImageBtn" data-position="{{idx}}" bindtap="delPic" src="../../images/remove_images_btn.png"></image>
-      </view>
-      <view class="img" bindtap="addPic">
-        <image class="addImageBtn"  src="../../images/add_images_btn.png"></image>
-      </view>
-    </view>
-  </view>
-</view>
-
-<view class="baseInfo">
-  <view class="infoTitle">基本资料</view>
-  <view class="infoCell2">
-    <text class="left hint">昵称</text>
-    <input data-type="nickName" value="{{mData.nickName}}" class="nickName right" placeholder="请输入昵称" bindinput="doInput" maxlength="8"></input>
-  </view>
-  <view class="infoCell">
-    <text class="left">性别</text>
-    <picker data-type="sex" data-data="{{sexArray}}" value="" range="{{sexArray}}" bindchange="bindHeightChange">
-    <text class="right">{{mData.sex}}</text>
-    <image class="right_gay" src="../../images/right_gay.png"></image>
-    </picker>
-  </view>
-  <view class="infoCell">
-    <text class="left">籍贯</text>
-    <picker  data-type="town" data-data="{{townArray}}" bindchange="bindHeightChange" value="" range="{{townArray}}" >
-      <view class="birthday">
-        {{mData.town}}
-      </view>
-      <image class="right_gay" src="../../images/right_gay.png"></image>
-    </picker>
-  </view>
-
-  <view class="infoCell">
-    <text class="left">生日</text>
-    <picker data-type="birthday"  mode="date" value="{{mData.birthday}}" bindchange="bindDateChange">
-      <view class="birthday">
-        {{mData.birthday}}
-      </view>
-      <image class="right_gay" src="../../images/right_gay.png"></image>
-    </picker>
-  </view>
-
-
-  <view class="infoCell">
-    <text class="left">身高</text>
-    <picker data-type="height" data-data="{{heightForPerson}}" value="20" range="{{heightForPerson}}" bindchange="bindHeightChange">
-      <view class="birthday">
-        {{mData.height}}
-      </view>
-      <image class="right_gay" src="../../images/right_gay.png"></image>
-    </picker>
-  </view>
-
-  <view class="infoCell">
-    <text class="left">工作地区</text>
-    <picker data-type="workPlace" mode="region" bindchange="bindRegionChange" value="{{region}}">
-      <view class="birthday">
-        {{mData.workPlace}}
-      </view>
-      <image class="right_gay" src="../../images/right_gay.png"></image>
-    </picker>
-  </view>
-
-
-  <view class="introduce bottom">
-    <text class="left hint">内心独白</text>
-    <textarea data-type="introduce" value="{{mData.introduce}}" maxlength="100" class="intro" bindinput="doInput" placeholder="介绍一下吧~" ></textarea>
-  </view>
-
-</view>
-
-<view class="tabItemView" id="tabItemView">
-  <view class="item {{tabItemViewFix?'itemFix':''}}">
-    <view catchtap="changeItemData" data-id="0" class="item_title left">
-      <text>个人信息</text>
-      <view wx:if='{{tabItemAt==0}}' class="line"></view>
-    </view>
-    <view catchtap="changeItemData" data-id="1" class="item_title right">
-      <text>择偶条件</text>
-      <view wx:if='{{tabItemAt==1}}' class="line"></view>
+    <navigation title="{{title}}" bgColor="white">
+        <image class="act" src="../../images/icon_back_black_a.png" mode="widthFix" bindtap="doFinish"></image>
+        <text class="update" bindtap="doUpdate">发布</text>
+    </navigation>
+    <view class='head'>
+        <view class="avatar">
+            <image class="logo" mode="aspectFill" src="{{mData.avatar.url}}"></image>
+            <text>封面头像</text>
+            <image class="changeIcon" bindtap="addAvatar" src="../../images/change_icon.png"></image>
+        </view>
+        <view class="photos">
+            <view class="title">相册
+                <text>(最多5张)</text>
+            </view>
+            <view class="images">
+                <view class="img" wx:for="{{mData.photoAlbum}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+                    <image class="photo" mode="aspectFill" src="{{item.avatar.url}}"></image>
+                    <image class="removeImageBtn" data-position="{{idx}}" bindtap="delPic"
+                           src="../../images/remove_images_btn.png"></image>
+                </view>
+                <view class="img" bindtap="addPic">
+                    <image class="addImageBtn" src="../../images/add_images_btn.png"></image>
+                </view>
+            </view>
+        </view>
     </view>
 
-    <view class="descMessege">完善相亲信息，能大幅度提升曝光度和匹配度哦~</view>
-  </view>
-  <info-items mData="{{mData}}" class="{{tabItemViewFix?'itemFixCell':''}}" bindchangeData="changeData" isSelf="{{tabItemAt==0}}"></info-items>
-</view>
+    <view class="baseInfo">
+        <view class="infoTitle">基本资料</view>
+        <view class="infoCell2">
+            <text class="left hint">昵称</text>
+            <input data-type="nickName" value="{{mData.nickName}}" class="nickName right" placeholder="请输入昵称"
+                   bindinput="doInput" maxlength="8"></input>
+        </view>
+        <view class="infoCell">
+            <text class="left">性别</text>
+            <picker data-type="sex" data-data="{{sexArray}}" value="" range="{{sexArray}}"
+                    bindchange="bindHeightChange">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <text class="birthday">{{mData.sex}}</text>
+                </view>
+            </picker>
+        </view>
+        <view class="infoCell">
+            <text class="left">籍贯</text>
+            <picker data-type="town" data-data="{{townArray}}" bindchange="bindHeightChange" value=""
+                    range="{{townArray}}">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.town}}
+                    </view>
+                </view>
+            </picker>
+        </view>
+
+        <view class="infoCell">
+            <text class="left">生日</text>
+            <picker data-type="birthday" mode="date" value="{{mData.birthday}}" bindchange="bindDateChange">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.birthday}}
+                    </view>
+                </view>
+            </picker>
+        </view>
+
+
+        <view class="infoCell">
+            <text class="left">身高</text>
+            <picker data-type="height" data-data="{{heightForPerson}}" value="20" range="{{heightForPerson}}"
+                    bindchange="bindHeightChange">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.height}}
+                    </view>
+                </view>
+            </picker>
+        </view>
+
+        <view class="infoCell">
+            <text class="left">工作地区</text>
+            <picker data-type="workPlace" mode="region" bindchange="bindRegionChange" value="{{region}}">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.workPlace}}
+                    </view>
+                </view>
+            </picker>
+        </view>
+
+
+        <view class="introduce bottom">
+            <text class="left hint">内心独白</text>
+            <textarea data-type="introduce" value="{{mData.introduce}}" maxlength="100" class="intro"
+                      bindinput="doInput" placeholder="介绍一下吧~"></textarea>
+        </view>
+
+    </view>
+
+    <view class="tabItemView" id="tabItemView">
+        <view class="item {{tabItemViewFix?'itemFix':''}}">
+            <view catchtap="changeItemData" data-id="0" class="item_title left">
+                <text>个人信息</text>
+                <view wx:if='{{tabItemAt==0}}' class="line"></view>
+            </view>
+            <view catchtap="changeItemData" data-id="1" class="item_title right">
+                <text>择偶条件</text>
+                <view wx:if='{{tabItemAt==1}}' class="line"></view>
+            </view>
+
+            <view class="descMessege">完善相亲信息，能大幅度提升曝光度和匹配度哦~</view>
+        </view>
+        <info-items mData="{{mData}}" class="{{tabItemViewFix?'itemFixCell':''}}" bindchangeData="changeData"
+                    isSelf="{{tabItemAt==0}}"></info-items>
+    </view>
 </view>

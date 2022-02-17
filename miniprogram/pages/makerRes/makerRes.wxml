@@ -1,7 +1,7 @@
 <!--pages/makerRes/makerRes.wxml-->
 <view class="out">
     <view class="listView" style="margin-top:{{20}}rpx">
-        <view class="listCell" catchtap="jumpToDetail" data-data="{{item}}" wx:key="index" wx:for="{{listData}}">
+        <view class="listCell" catchtap="jumpToDetail" catchlongpress="del" data-data="{{item}}" wx:key="index" wx:for="{{listData}}">
             <view class="content">
                 <image lazy-load="" class="icon" mode="aspectFill" src="{{item.avatar.url}}"></image>
                 <view class="infoView">

@@ -1,250 +1,317 @@
 <view class="list">
-  <block wx:if='{{isSelf}}'>
-    <view class="infoCell">
-      <text class="left">月收入</text>
-      <picker data-index="0" data-type="earning" data-data="{{earningArray}}" value="" range="{{earningArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[0].value}}
+    <block wx:if='{{isSelf}}'>
+        <view class="infoCell">
+            <text class="left">月收入</text>
+            <picker data-index="0" data-type="earning" data-data="{{earningArray}}" value="" range="{{earningArray}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[0].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-    <view class="infoCell2">
-      <text class="hint">职业</text>
-      <view class="birthday">
-      <input data-index="1" data-type="job" value="{{mData.baseInfoTags[1].value}}" placeholder="请输入职业" maxlength="8" bindinput="doInput"/>
-      </view>
-    </view>
-
-    <view class="infoCell">
-      <text class="left">学历</text>
-      <picker data-index="2" data-type="school" data-data="{{schoolAge}}" value="" range="{{schoolAge}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[2].value}}
+        <view class="infoCell2">
+            <text class="left">职业</text>
+            <view class="birthday">
+                <input data-index="1" data-type="job" value="{{mData.baseInfoTags[1].value}}" placeholder="请输入职业"
+                       maxlength="8" bindinput="doInput"/>
+            </view>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-    <view class="infoCell">
-      <text class="left">婚姻状态</text>
-      <picker data-index="3" data-type="marriage" data-data="{{marriageArray}}" value="" range="{{marriageArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[3].value}}
+        <view class="infoCell">
+            <text class="left">学历</text>
+            <picker data-index="2" data-type="school" data-data="{{schoolAge}}" value="" range="{{schoolAge}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[2].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-    <view class="infoCell">
-      <text class="left">有没有小孩</text>
-      <picker data-index="4" data-type="hasBaby" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[4].value}}
+        <view class="infoCell">
+            <text class="left">婚姻状态</text>
+            <picker data-index="3" data-type="marriage" data-data="{{marriageArray}}" value="" range="{{marriageArray}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[3].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-
-    <view class="infoCell">
-      <text class="left">是否要小孩</text>
-      <picker data-index="5" data-type="needBaby" data-data="{{needBabyArray}}" value="" range="{{needBabyArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[5].value}}
+        <view class="infoCell">
+            <text class="left">有没有小孩</text>
+            <picker data-index="4" data-type="hasBaby" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[4].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-    <view class="infoCell">
-      <text class="left">住房情况</text>
-      <picker data-index="6" data-type="house" data-data="{{houseArray}}" value="" range="{{houseArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[6].value}}
+
+        <view class="infoCell">
+            <text class="left">是否要小孩</text>
+            <picker data-index="5" data-type="needBaby" data-data="{{needBabyArray}}" value="" range="{{needBabyArray}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[5].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-
-    <view class="infoCell">
-      <text class="left">买车情况</text>
-      <picker data-index="7" data-type="car" data-data="{{carArray}}" value="" range="{{carArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[7].value}}
+        <view class="infoCell">
+            <text class="left">住房情况</text>
+            <picker data-index="6" data-type="house" data-data="{{houseArray}}" value="" range="{{houseArray}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[6].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-    <view class="infoCell">
-      <text class="left">体重</text>
-      <picker data-index="8" data-type="weight" data-data="{{weightForPerson}}" value="" range="{{weightForPerson}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[8].value}}
+
+        <view class="infoCell">
+            <text class="left">买车情况</text>
+            <picker data-index="7" data-type="car" data-data="{{carArray}}" value="" range="{{carArray}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[7].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-
-    <view class="infoCell">
-      <text class="left">体型</text>
-      <picker data-index="9" data-type="bodily" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[9].value}}
+        <view class="infoCell">
+            <text class="left">体重</text>
+            <picker data-index="8" data-type="weight" data-data="{{weightForPerson}}" value=""
+                    range="{{weightForPerson}}" bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[8].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-    <view class="infoCell">
-      <text class="left">民族</text>
-      <picker data-index="10" data-type="nationality" data-data="{{nationalityArray}}" value="" range="{{nationalityArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[10].value}}
+        <view class="infoCell">
+            <text class="left">体型</text>
+            <picker data-index="9" data-type="bodily" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[9].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-    <view class="infoCell">
-      <text class="left">何时结婚</text>
-      <picker data-index="11" data-type="whatTimeMarry" data-data="{{whatTimeMarryArray}}" value="" range="{{whatTimeMarryArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[11].value}}
+        <view class="infoCell">
+            <text class="left">民族</text>
+            <picker data-index="10" data-type="nationality" data-data="{{nationalityArray}}" value=""
+                    range="{{nationalityArray}}" bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[10].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-    <view class="infoCell">
-      <text class="left">是否吸烟</text>
-      <picker data-index="12" data-type="smoke" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="changeBaseInfo">
-        <view class="birthday">
-          {{mData.baseInfoTags[12].value}}
+        <view class="infoCell">
+            <text class="left">何时结婚</text>
+            <picker data-index="11" data-type="whatTimeMarry" data-data="{{whatTimeMarryArray}}" value=""
+                    range="{{whatTimeMarryArray}}" bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[11].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
-
-  </block>
 
 
-  <block wx:else>
-  <view class="infoCell">
-      <text class="left">年龄</text>
-      <picker data-index="0" data-type="age2" data-data="{{ageArray}}" value="" range="{{ageArray}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[0].value}}
+        <view class="infoCell">
+            <text class="left">是否吸烟</text>
+            <picker data-index="12" data-type="smoke" data-data="{{smokeArray}}" value="" range="{{smokeArray}}"
+                    bindchange="changeBaseInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.baseInfoTags[12].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
+
+    </block>
 
 
-    <view class="infoCell">
-      <text class="left">身高</text>
-      <picker data-index="1" data-type="height2" data-data="{{heightForPerson}}" value="30" range="{{heightForPerson}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[1].value}}
+    <block wx:else>
+        <view class="infoCell">
+            <text class="left">年龄</text>
+            <picker data-index="0" data-type="age2" data-data="{{ageArray}}" value="" range="{{ageArray}}"
+                    bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[0].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-    <view class="infoCell">
-      <text class="left">月收入</text>
-      <picker data-index="2" data-type="earning2" data-data="{{earningArray}}" value="" range="{{earningArray}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[2].value}}
+
+        <view class="infoCell">
+            <text class="left">身高</text>
+            <picker data-index="1" data-type="height2" data-data="{{heightForPerson}}" value="30"
+                    range="{{heightForPerson}}" bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[1].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
-
-    <view class="infoCell">
-      <text class="left">学历</text>
-      <picker data-index="3" data-type="school2" data-data="{{schoolAge}}" value="" range="{{schoolAge}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[3].value}}
+        <view class="infoCell">
+            <text class="left">月收入</text>
+            <picker data-index="2" data-type="earning2" data-data="{{earningArray}}" value="" range="{{earningArray}}"
+                    bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[2].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-    <view class="infoCell">
-      <text class="left">婚姻状态</text>
-      <picker data-index="4" data-type="marriage2" data-data="{{marriageArray}}" value="" range="{{marriageArray}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[4].value}}
+        <view class="infoCell">
+            <text class="left">学历</text>
+            <picker data-index="3" data-type="school2" data-data="{{schoolAge}}" value="" range="{{schoolAge}}"
+                    bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[3].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-    <view class="infoCell">
-      <text class="left">体型</text>
-      <picker data-index="5" data-type="bodily2" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[5].value}}
+        <view class="infoCell">
+            <text class="left">婚姻状态</text>
+            <picker data-index="4" data-type="marriage2" data-data="{{marriageArray}}" value=""
+                    range="{{marriageArray}}" bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[4].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-       <view class="infoCell">
-      <text class="left">工作地区</text>
-      <picker data-index="6" data-type="town2" data-data="{{townArray}}" bindchange="changeMatchInfo" value="{{townArray}}">
-        <view class="birthday">
-          {{mData.matchInfoTags[6].value}}
+        <view class="infoCell">
+            <text class="left">体型</text>
+            <picker data-index="5" data-type="bodily2" data-data="{{bodilyForm}}" value="" range="{{bodilyForm}}"
+                    bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[5].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-  <view class="infoCell">
-      <text class="left">有没有小孩</text>
-      <picker data-index="7" data-type="hasBaby2" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[7].value}}
+        <view class="infoCell">
+            <text class="left">工作地区</text>
+            <picker data-index="6" data-type="town2" data-data="{{townArray}}" bindchange="changeMatchInfo"
+                    value="{{townArray}}">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[6].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-    <view class="infoCell">
-      <text class="left">是否要小孩</text>
-      <picker data-index="8" data-type="needBaby2" data-data="{{needBabyArray}}" value="" range="{{needBabyArray}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[8].value}}
+        <view class="infoCell">
+            <text class="left">有没有小孩</text>
+            <picker data-index="7" data-type="hasBaby2" data-data="{{hasBabyArray}}" value="" range="{{hasBabyArray}}"
+                    bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[7].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-  <view class="infoCell">
-      <text class="left">是否吸烟</text>
-      <picker data-index="9" data-type="smoke2" data-data="{{smokeArray}}" value="" range="{{smokeArray}}" bindchange="changeMatchInfo">
-        <view class="birthday">
-          {{mData.matchInfoTags[9].value}}
+        <view class="infoCell">
+            <text class="left">是否要小孩</text>
+            <picker data-index="8" data-type="needBaby2" data-data="{{needBabyArray}}" value=""
+                    range="{{needBabyArray}}" bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[8].value}}
+                    </view>
+                </view>
+            </picker>
         </view>
-        <image class="right_gay" src="../../images/right_gay.png"></image>
-      </picker>
-    </view>
 
 
-  </block>
+        <view class="infoCell">
+            <text class="left">是否吸烟</text>
+            <picker data-index="9" data-type="smoke2" data-data="{{smokeArray}}" value="" range="{{smokeArray}}"
+                    bindchange="changeMatchInfo">
+                <view class="picker-in">
+                    <image class="right_gay" src="../../images/right_gay.png"></image>
+                    <view class="birthday">
+                        {{mData.matchInfoTags[9].value}}
+                    </view>
+                </view>
+            </picker>
+        </view>
+
+
+    </block>
 </view>

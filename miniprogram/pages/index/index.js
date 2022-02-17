@@ -43,18 +43,20 @@ Page({
         let condition = {}
         if (wx.getStorageSync("user_type") == "boy") {
             condition = {
-                sex: "女"
+                sex: "女",
             }
         } else if (wx.getStorageSync("user_type") == "girl") {
             condition = {
-                sex: "男"
+                sex: "男",
             }
         } else {
-            condition = {}
+            condition = {
+            }
         }
         db.collection(consts.db_person)
             .orderBy('order', 'desc')
-            .where(condition).skip(20 * this.pageNum)
+            .where(condition)
+            .skip(20 * this.pageNum)
             .limit(20).get()
             .then(res => {
                 if (res.data.length > 0) {
@@ -155,9 +157,12 @@ Page({
 
     jumpToDetail(e) {
         let data = e.currentTarget.dataset.data;
-        wx.navigateTo({
-            url: '../userDetail/index?data=' + JSON.stringify(data),
-        })
+        if (data.click != false) {
+            wx.navigateTo({
+                url: '../userDetail/index?data=' + JSON.stringify(data),
+            })
+
+        }
     },
 
 

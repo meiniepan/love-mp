@@ -1,2 +1,2 @@
 <!--pages/lickList/lickList.wxml-->
-<text>pages/lickList/lickList.wxml</text>
+<emptyView wx:if="{{isEmpty}}"/>

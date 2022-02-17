@@ -10,6 +10,7 @@ Page({
     data: {
         mData: [],
         canAdd: false,
+
     },
 
     /**
@@ -50,7 +51,12 @@ Page({
 
                 if (res.data.length > 0) {
                     this.setData({
-                        mData: res.data
+                        mData: res.data,
+                        isEmpty:false,
+                    })
+                }else {
+                    this.setData({
+                        isEmpty:true,
                     })
                 }
             },
@@ -74,7 +80,7 @@ Page({
         if (wx.getStorageSync("user_type") == "manager") {
             let item = e.currentTarget.dataset.item
             showModal(
-                "删除此位红娘",
+                "删除此位红娘？",
                 "温馨提示",
                 (res) => {
                     if (res.confirm) {

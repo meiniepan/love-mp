@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 28rpx;
-  padding-right: 80rpx;
+  padding-right: 0rpx;
   padding-left: 30rpx;
   height: 80rpx;
   line-height: 80rpx;
@@ -28,12 +28,18 @@
 .infoCell .left {
   color: var(--commonHint);
 }
+.infoCell2 .left {
+  color: var(--commonHint);
+}
 
 .infoCell .right {
   color: #000;
 }
 
 .infoCell .birthday {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #333;
 }
 
@@ -42,11 +48,13 @@
   text-align: right;
   width: 500rpx;
 }
-
+.picker-in{
+  display: flex;
+  width: 500rpx;
+  flex-direction: row-reverse;
+}
 .right_gay {
   width: 40rpx;
   height: 40rpx;
-  position: absolute;
-  right: 30rpx;
-  top: 20rpx;
+  padding: 20rpx 30rpx;
 }

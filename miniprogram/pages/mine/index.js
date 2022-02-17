@@ -1,3 +1,4 @@
+const {showModal} = require("../../utils/util");
 Page({
 
     /**
@@ -15,6 +16,11 @@ Page({
         if (wx.getStorageSync("user_type") == "maker"||wx.getStorageSync("user_type") == "manager") {
             this.setData({
                 isMaker: true
+            })
+        }
+        if ((wx.getStorageSync("user_type")).length>0) {
+            this.setData({
+                isUser: true
             })
         }
 
@@ -53,6 +59,8 @@ Page({
             wx.navigateTo({
                 url: '../lickList/lickList?type=我的关注',
             })
+        }else if (e.currentTarget.dataset.item == "咨询服务") {
+            showModal("微信号：meiniepan")
         }
     },
 

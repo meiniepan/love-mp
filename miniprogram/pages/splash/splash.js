@@ -35,15 +35,18 @@ Page({
                 //     url: '/packageA/pages/notice/notice',
                 // })
                 let type = wx.getStorageSync('user_type')
-                if (isEmpty(type)) {
-                    wx.redirectTo({
-                        url: '/pages/switch_role/switch_role',
-                    })
-                } else {
-                    wx.switchTab({
-                        url: '/pages/index/index',
-                    })
-                }
+                // if (isEmpty(type)) {
+                //     wx.redirectTo({
+                //         url: '/pages/switch_role/switch_role',
+                //     })
+                // } else {
+                //     wx.switchTab({
+                //         url: '/pages/index/index',
+                //     })
+                // }
+                wx.switchTab({
+                    url: '/pages/index/index',
+                })
             }
             , 1000)
     },
