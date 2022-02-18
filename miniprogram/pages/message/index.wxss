@@ -1,0 +1,26 @@
+.cells{
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx 40rpx;
+
+}
+.cell{
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+
+}
+ .icon{
+     display: flex;
+     flex-shrink: 0;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+}
+ .text{
+   margin-left: 20rpx;
+   border: solid 1rpx var(--themeColor);
+   border-radius: 10rpx;
+     width: 100%;
+   padding: 20rpx;
+ }

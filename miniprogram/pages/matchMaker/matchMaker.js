@@ -22,7 +22,16 @@ Page({
                 canAdd: true,
             })
         }
-        this.getData()
+        let db_name = consts.db_test2
+        if (wx.getStorageSync("online")) {
+            db_name = consts.db_makers
+        }
+        this.setData({
+            db_name,
+        },()=>{
+            this.getData()
+        })
+
 
     },
 
@@ -45,18 +54,18 @@ Page({
         wx.showLoading({
             title: '加载中',
         })
-        db.collection(consts.db_makers).get({
+        db.collection(this.data.db_name).get({
             success: res => {
                 wx.hideLoading()
 
                 if (res.data.length > 0) {
                     this.setData({
                         mData: res.data,
-                        isEmpty:false,
+                        isEmpty: false,
                     })
-                }else {
+                } else {
                     this.setData({
-                        isEmpty:true,
+                        isEmpty: true,
                     })
                 }
             },
@@ -71,10 +80,12 @@ Page({
         })
     },
     doClick(e) {
-        let phone = e.currentTarget.dataset.item.phone
-        wx.navigateTo({
-            url: '/pages/makerRes/makerRes?phone=' + phone
-        })
+        let data = e.currentTarget.dataset.item
+        if (data.click != false) {
+            wx.navigateTo({
+                url: '/pages/makerRes/makerRes?phone=' + data.phone
+            })
+        }
     },
     del(e) {
         if (wx.getStorageSync("user_type") == "manager") {

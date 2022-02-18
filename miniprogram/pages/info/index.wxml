@@ -98,7 +98,7 @@
         <view class="introduce bottom">
             <text class="left hint">内心独白</text>
             <textarea data-type="introduce" value="{{mData.introduce}}" maxlength="100" class="intro"
-                      bindinput="doInput" placeholder="介绍一下吧~"></textarea>
+                      bindinput="doInput" placeholder="介绍一下吧~（100字内）"></textarea>
         </view>
 
     </view>

@@ -1,3 +1,4 @@
+const consts = require("../../utils/consts");
 const {showModal} = require("../../utils/util");
 const app = getApp()
 
@@ -12,7 +13,8 @@ Page({
         systemInfoObj: {},
         pagesNum: 0,
         videoAdClockisEnded: false,
-        uid: ''
+        uid: '',
+        message: "",
     },
 
     /**
@@ -37,17 +39,17 @@ Page({
         if (data.maker_phone.length > 0) {
             if (data.authMaker) {
                 this.setData({
-                    contactMaker:true,
-                    contactMessage:true,
+                    contactMaker: true,
+                    contactMessage: true,
                 })
-            }else {
-            this.setData({
-                contactMaker:true,
-            })
+            } else {
+                this.setData({
+                    contactMaker: true,
+                })
             }
-        }else {
+        } else {
             this.setData({
-                contactMessage:true,
+                contactMessage: true,
             })
         }
         let that = this
@@ -78,35 +80,6 @@ Page({
     },
 
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-        // const db = wx.cloud.database()
-        // const _ = db.command
-        // db.collection(this.dbName).doc(this.data.uid).get().then(res => {
-        //   this.setData({
-        //     userModel: res.data
-        //   })
-        //   wx.hideLoading()
-        //   wx.showToast({
-        //     title: '缘分已开启,感兴趣就抓紧联系吧',
-        //     icon: 'none',
-        //     duration:2000
-        //   })
-        //   wx.stopPullDownRefresh()
-        // }).catch(e => {
-        //   if (e.errCode == -1){
-        //     this.dbName = 'db_user_list_boys'
-        //     this.onPullDownRefresh()
-        //   }else{
-        //     wx.stopPullDownRefresh()
-        //   }
-        // })
-        // this.setData({
-        //   pagesNum: getCurrentPages().length
-        // })
-    },
     copyIdNum() {
         wx.setClipboardData({
             data: this.data.userModel._id,
@@ -154,12 +127,46 @@ Page({
      */
 
     doContact() {
+        this.setData({
+            showModal: true,
+        })
+    },
+    onContact() {
+        if (this.data.message.length == 0) {
+            wx.showToast({
+                icon: "none",
+                title: '内容不能为空！',
+            })
+            return
+        }
+        let data = {
+            from: wx.getStorageSync("openid"), to: this.data.userModel._openid,
+            userInfo: this.data.userModel,
+            nickName: this.data.userModel.nickName,
+            message: this.data.message
+        }
+        app.onAdd(consts.db_message, data, () => {
+            wx.showToast({
+                icon: "none",
+                title: '留言成功！',
+            })
+            this.setData({
+                showModal: false,
+            })
+        })
+    },
 
+    doInput: function (e) {
+        let type = e.currentTarget.dataset.type;
+        let v = e.detail.value
+        this.setData({
+            [type]: v,
+        });
     },
 
     doContactMaker() {
         showModal(
-            "打电话给红娘 "+this.data.userModel.maker_phone,
+            "打电话给红娘 " + this.data.userModel.maker_phone,
             "温馨提示",
             (res) => {
                 if (res.confirm) {

@@ -1,8 +1,8 @@
 {
   "navigationStyle":"custom",
-  "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    
+    "commonButton": "/components/commonButton/commonButton",
+    "modal": "/components/modal/modal"
   }
 }

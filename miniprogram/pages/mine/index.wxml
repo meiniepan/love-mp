@@ -1,9 +1,13 @@
 <view class='head'>
   <image lazy-load="" mode="aspectFill" src="../../images/bac_mine.jpg"></image>
 </view>
-  <view wx:if="{{isMaker}}" catchtap="jumpToDetail" data-item="红娘资源" class="listItem">红娘资源</view>
+  <view wx:if="{{isMaker}}" catchtap="jumpToDetail" data-item="爱心资源" class="listItem">爱心资源</view>
   <view wx:if="{{isUser}}" catchtap="jumpToDetail" data-item="我的资料" class="listItem">我的资料</view>
   <view wx:if="{{!isMaker}}" catchtap="jumpToDetail" data-item="关注我的" class="listItem">关注我的</view>
   <view wx:if="{{!isMaker}}" catchtap="jumpToDetail" data-item="我的关注" class="listItem">我的关注</view>
-  <view catchtap="jumpToDetail" data-item="切换身份" class="listItem">切换身份</view>
-  <view catchtap="jumpToDetail" data-item="咨询服务" class="listItem">咨询服务</view>
+  <view wx:if="{{online}}" catchtap="jumpToDetail" data-item="切换身份" class="listItem">切换身份</view>
+<view class="bottomView">
+<button  open-type="contact" send-message-openid="{{userDetail._openid}}" send-message-title="{{userDetail.nickname}}" send-message-img="{{userDetail.avatar.url}}" send-message-path="/pages/userDetail/index?uid={{userDetail._openid}}" bindcontact='contact' show-message-card plain bindcontact="handleContact">
+  <text >客服咨询</text>
+</button>
+</view>

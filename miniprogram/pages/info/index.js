@@ -177,7 +177,7 @@ Page({
         wx.showLoading({
             title: '加载中',
         })
-        db.collection("db_person").where({
+        db.collection(consts.db_person).where({
             _openid: wx.getStorageSync("openid")
         }).get({
             success: res => {

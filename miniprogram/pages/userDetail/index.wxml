@@ -50,6 +50,15 @@
   </view>
 </view>
 
+<modal show="{{showModal}}" height='500rpx'>
+  　　
+  <view class="mark-out">
+    <textarea data-type="message" value="" maxlength="100" class="intro"
+              bindinput="doInput" placeholder="输入留言内容（100字内）"/>
+    <commonButton mType="0" bindtap="onContact" class="btn2" text="留言" style="margin-top: 50rpx"/>
+  </view>
+</modal>
+
 
 
 

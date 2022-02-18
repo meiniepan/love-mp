@@ -6,7 +6,7 @@
     "pages/index/index",
     "pages/mine/index",
     "pages/userNeedKnow/index",
-    "pages/plaza/index",
+    "pages/message/index",
     "pages/matchMaker/matchMaker",
     "pages/makerRes/makerRes",
     "pages/addMaker/addMaker",
@@ -14,7 +14,7 @@
     "pages/info/index",
     "pages/makerInfo/makerInfo",
     "pages/lickList/lickList",
-    "pages/plazaDetail/index",
+    "pages/messageDetail/index",
     "pages/report/index"
   ],
   "tabBar": {
@@ -36,7 +36,7 @@
         "selectedIconPath": "/images/tabBar_maker_sec.png"
       },
       {
-        "pagePath": "pages/plaza/index",
+        "pagePath": "pages/message/index",
         "text": "消息",
         "iconPath": "/images/tabBar_02_nom.png",
         "selectedIconPath": "/images/tabBar_02_sec.png"

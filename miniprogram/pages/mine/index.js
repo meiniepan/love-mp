@@ -5,34 +5,43 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        userDetail: {},
         isMaker: false,
+        online: false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if (wx.getStorageSync("user_type") == "maker"||wx.getStorageSync("user_type") == "manager") {
+        if (wx.getStorageSync("user_type") == "maker" || wx.getStorageSync("user_type") == "manager") {
             this.setData({
                 isMaker: true
             })
         }
-        if ((wx.getStorageSync("user_type")).length>0) {
+        if ((wx.getStorageSync("user_type")).length > 0 && wx.getStorageSync("online")) {
             this.setData({
                 isUser: true
             })
         }
+        if ((wx.getStorageSync("online"))) {
+            this.setData({
+                online: true
+            })
+        }
+        this.setData({
+            userDetail:wx.getStorageSync("my_userinfo")
+        })
 
     },
 
     jumpToDetail(e) {
         if (e.currentTarget.dataset.item == "我的资料") {
-            if (this.data.isMaker){
+            if (this.data.isMaker) {
                 wx.navigateTo({
                     url: '../makerInfo/makerInfo',
                 })
-            }else {
+            } else {
                 wx.navigateTo({
                     url: '../info/index?type=view&id=me',
                 })
@@ -42,24 +51,24 @@ Page({
             wx.navigateTo({
                 url: '../userNeedKnow/index',
             })
-        } else if (e.currentTarget.dataset.item == "红娘资源") {
+        } else if (e.currentTarget.dataset.item == "爱心资源") {
             wx.navigateTo({
                 url: '../makerRes/makerRes?type=me',
             })
-        }else if (e.currentTarget.dataset.item == "切换身份") {
-            wx.setStorageSync("user_type","")
+        } else if (e.currentTarget.dataset.item == "切换身份") {
+            wx.setStorageSync("user_type", "")
             wx.redirectTo({
                 url: '/pages/switch_role/switch_role',
             })
-        }else if (e.currentTarget.dataset.item == "关注我的") {
+        } else if (e.currentTarget.dataset.item == "关注我的") {
             wx.navigateTo({
                 url: '../lickList/lickList?type=关注我的',
             })
-        }else if (e.currentTarget.dataset.item == "我的关注") {
+        } else if (e.currentTarget.dataset.item == "我的关注") {
             wx.navigateTo({
                 url: '../lickList/lickList?type=我的关注',
             })
-        }else if (e.currentTarget.dataset.item == "咨询服务") {
+        } else if (e.currentTarget.dataset.item == "咨询服务") {
             showModal("微信号：meiniepan")
         }
     },

@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    empty: {
+      type: String,
+      value: "暂无数据",
+    },
   },
 
   /**

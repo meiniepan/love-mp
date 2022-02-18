@@ -18,15 +18,19 @@ Page({
             openid = app.getOpenid()
         }
         let sex = ""
-
-        this.setData({
-            openid: openid,
-            sex: sex
-        })
-
+        let db_name = consts.db_test
+        if (wx.getStorageSync("online")) {
+            db_name = consts.db_person
+        }
         let that = this
         that.pageNum = 0
-        wx.startPullDownRefresh()
+        this.setData({
+            openid: openid,
+            sex: sex,
+            db_name,
+        },()=>{
+            wx.startPullDownRefresh()
+        })
 
     },
 
@@ -50,10 +54,9 @@ Page({
                 sex: "男",
             }
         } else {
-            condition = {
-            }
+            condition = {}
         }
-        db.collection(consts.db_person)
+        db.collection(this.data.db_name)
             .orderBy('order', 'desc')
             .where(condition)
             .skip(20 * this.pageNum)
@@ -114,7 +117,7 @@ Page({
         } else {
             condition = {}
         }
-        db.collection(consts.db_person)
+        db.collection(this.data.db_name)
             .orderBy('order', 'desc')
             .where(condition).skip(20 * this.pageNum)
             .limit(20).get()

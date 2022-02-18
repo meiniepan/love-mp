@@ -1,0 +1,11 @@
+
+<view class="out">
+    <emptyView empty="还没有收到消息！" wx:if="{{isEmpty}}"/>
+    <view class="cells" wx:else>
+        <view class="cell" wx:for="{{userInfos}}" wx:key="index" data-item="{{item}}" catchlongpress="del">
+
+            <image lazy-load="" data-item="{{item}}" catchtap="jumpToInfo" class="icon" mode="aspectFill" src="{{item.avatar.url}}"></image>
+            <text class="text" data-item="{{item}}" catchtap="jumpToDetail">{{item.hint}}</text>
+        </view>
+    </view>
+</view>
