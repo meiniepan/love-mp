@@ -1,4 +1,5 @@
 //app.js
+const {showModal} = require("./utils/util");
 App({
     onLaunch: function () {
 

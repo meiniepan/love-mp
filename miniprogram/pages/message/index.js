@@ -68,10 +68,10 @@ Page({
                     }
                 },
                 fail: err => {
-                    wx.hideLoading()
+                    wx.stopPullDownRefresh()
                     wx.showToast({
                         icon: 'none',
-                        title: '查询记录失败'
+                        title: err.toString()
                     })
                     console.error('[数据库] [查询记录] 失败：', err)
                 }

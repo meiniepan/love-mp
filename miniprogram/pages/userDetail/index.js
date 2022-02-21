@@ -1,4 +1,5 @@
 const consts = require("../../utils/consts");
+const {isEmpty} = require("../../utils/util");
 const {showModal} = require("../../utils/util");
 const app = getApp()
 
@@ -144,10 +145,29 @@ Page({
             })
             return
         }
+        let json = wx.getStorageSync("my_userinfo")
+        if (json instanceof Object) {
+            if(isEmpty(json.nickName)){
+                wx.showToast({
+                    icon: "none",
+                    title: '请先发布你的个人信息后再留言！',
+                })
+                return
+            }else {
+
+            }
+        }else {
+            wx.showToast({
+                icon: "none",
+                title: '请先发布你的个人信息后再留言！',
+            })
+            return
+        }
         let data = {
+
             from: wx.getStorageSync("openid"), to: this.data.userModel._openid,
-            userInfo: this.data.userModel,
-            nickName: this.data.userModel.nickName,
+            userInfo: json,
+            nickName: json.nickName,
             message: this.data.message,
         }
         app.onAdd(consts.db_message, data, () => {
