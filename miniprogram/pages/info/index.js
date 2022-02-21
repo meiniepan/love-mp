@@ -275,6 +275,7 @@ Page({
         }
         wx.chooseImage({
             sizeType: ['compressed'],
+            count:1,
             success: res0 => {
                 wx.showLoading({
                     title: '加载中',
@@ -302,6 +303,7 @@ Page({
     addAvatar() {
         wx.chooseImage({
             sizeType: ['compressed'],
+            count:1,
             success: res0 => {
                 wx.showLoading({
                     title: '加载中',
