@@ -1,4 +1,4 @@
-<view class="out">
+<view wx:if="{{showContent}}" class="out">
     <navigation title="{{title}}" bgColor="white">
         <image class="act" src="../../images/icon_back_black_a.png" mode="widthFix" bindtap="doFinish"></image>
         <text class="update" bindtap="doUpdate">发布</text>
@@ -120,3 +120,5 @@
                     isSelf="{{tabItemAt==0}}"></info-items>
     </view>
 </view>
+
+<view wx:if="{{!showContent}}" style="margin-top: 100rpx;margin-left: 40rpx">美好的一天</view>

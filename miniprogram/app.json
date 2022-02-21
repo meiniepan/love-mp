@@ -31,7 +31,7 @@
       },
       {
         "pagePath": "pages/matchMaker/matchMaker",
-        "text": "爱心",
+        "text": "认证",
         "iconPath": "/images/tabBar_maker_nom.png",
         "selectedIconPath": "/images/tabBar_maker_sec.png"
       },

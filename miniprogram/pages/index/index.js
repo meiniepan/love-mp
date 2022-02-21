@@ -57,6 +57,7 @@ Page({
             condition = {}
         }
         db.collection(this.data.db_name)
+            .orderBy('createTime', 'desc')
             .orderBy('order', 'desc')
             .where(condition)
             .skip(20 * this.pageNum)
@@ -118,6 +119,7 @@ Page({
             condition = {}
         }
         db.collection(this.data.db_name)
+            .orderBy('createTime', 'desc')
             .orderBy('order', 'desc')
             .where(condition).skip(20 * this.pageNum)
             .limit(20).get()

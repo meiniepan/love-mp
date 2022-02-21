@@ -54,6 +54,7 @@ Page({
             }
         }
         db.collection(consts.db_person)
+            .orderBy('createTime', 'desc')
             .where(condition)
             .where({ maker_phone: this.data.phone})
             .get({

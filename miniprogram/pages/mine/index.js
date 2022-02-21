@@ -51,12 +51,13 @@ Page({
             wx.navigateTo({
                 url: '../userNeedKnow/index',
             })
-        } else if (e.currentTarget.dataset.item == "爱心资源") {
+        } else if (e.currentTarget.dataset.item == "认证资源") {
             wx.navigateTo({
                 url: '../makerRes/makerRes?type=me',
             })
         } else if (e.currentTarget.dataset.item == "切换身份") {
             wx.setStorageSync("user_type", "")
+            wx.setStorageSync("my_userinfo", "")
             wx.redirectTo({
                 url: '/pages/switch_role/switch_role',
             })

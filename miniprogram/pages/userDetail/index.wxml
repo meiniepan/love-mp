@@ -1,4 +1,6 @@
-<view class="detail">
+<view wx:if="{{!showContent}}" style="margin-top: 100rpx;margin-left: 40rpx">美好的一天</view>
+
+<view wx:if="{{showContent}}" class="detail">
   <image catchtap="backClick" class="backIcon" mode="widthFix" style="top:{{menuRect.top+4}}px;" src="../../images/icon_back_black_a.png"></image>
   <swiper indicator-dots="{{userModel.photoAlbum.length>1}}" easing-function="linear" circular="true" autoplay="true"  interval="8000">
     <block wx:for="{{userModel.photoAlbum}}" wx:key="index">

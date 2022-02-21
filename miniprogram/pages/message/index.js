@@ -1,5 +1,6 @@
 //index.js
 const consts = require("../../utils/consts");
+const {formatDate} = require("../../utils/util");
 const {showModal} = require("../../utils/util");
 const app = getApp()
 
@@ -37,6 +38,7 @@ Page({
             to: wx.getStorageSync("openid")
         }
         db.collection(consts.db_message)
+            .orderBy('createTime', 'desc')
             .where(condition)
             .get({
                 success: res => {
@@ -44,7 +46,8 @@ Page({
                     if (res.data.length > 0) {
                         let userInfos = []
                         res.data.forEach(it => {
-                            it.userInfo.hint = it.nickName + " 给你留言了！"
+                            it.userInfo._id = it._id
+                            it.userInfo.hint = it.nickName + " 给你留言了！\n"+formatDate(it.createTime)
                             it.userInfo.message = it.message
                             userInfos.push(it.userInfo)
                         })
@@ -73,6 +76,21 @@ Page({
                     console.error('[数据库] [查询记录] 失败：', err)
                 }
             })
+    },
+
+    del(e) {
+            let item = e.currentTarget.dataset.item
+            showModal(
+                "删除此条留言？",
+                "温馨提示",
+                (res) => {
+                    if (res.confirm) {
+                        app.onDelete(consts.db_message, item._id, () => {
+                            this.getData()
+                        })
+                    }
+                }
+            )
     },
 
     jumpToInfo(e) {

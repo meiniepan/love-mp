@@ -2,5 +2,5 @@
   "usingComponents": {
     "emptyView": "/components/emptyView/emptyView"
   },
-  "navigationBarTitleText": "爱心"
+  "navigationBarTitleText": "认证"
 }

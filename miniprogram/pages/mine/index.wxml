@@ -1,7 +1,7 @@
 <view class='head'>
   <image lazy-load="" mode="aspectFill" src="../../images/bac_mine.jpg"></image>
 </view>
-  <view wx:if="{{isMaker}}" catchtap="jumpToDetail" data-item="爱心资源" class="listItem">爱心资源</view>
+  <view wx:if="{{isMaker}}" catchtap="jumpToDetail" data-item="认证资源" class="listItem">认证资源</view>
   <view wx:if="{{isUser}}" catchtap="jumpToDetail" data-item="我的资料" class="listItem">我的资料</view>
   <view wx:if="{{!isMaker}}" catchtap="jumpToDetail" data-item="关注我的" class="listItem">关注我的</view>
   <view wx:if="{{!isMaker}}" catchtap="jumpToDetail" data-item="我的关注" class="listItem">我的关注</view>

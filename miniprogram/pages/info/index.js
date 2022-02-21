@@ -57,6 +57,7 @@ Page({
         tabItemViewFix: false,
         tabItemAt: 0,
         type: "",
+        showContent: false,
     },
     changeItemData(e) {
         this.setData({
@@ -67,6 +68,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+            this.setData({
+                showContent:wx.getStorageSync("online")
+            })
         if (options.type == "new") {
             this.data.mData.maker_phone = options.id
             this.setData({
@@ -349,6 +353,9 @@ Page({
         })
     },
     getTopHeight() {
+        if (!this.data.showContent){
+            return
+        }
         let that = this
         const query = wx.createSelectorQuery()
         query.select('#tabItemView').boundingClientRect()

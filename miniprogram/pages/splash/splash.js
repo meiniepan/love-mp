@@ -45,6 +45,7 @@ Page({
                         if (online) {
                             this.login()
                         } else {
+                            wx.setStorageSync("user_type", "")
                             wx.switchTab({
                                 url: '/pages/index/index',
                             })
