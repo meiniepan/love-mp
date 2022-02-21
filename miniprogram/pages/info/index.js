@@ -1,3 +1,5 @@
+import {isEmpty} from "../../utils/util";
+
 const consts = require("../../utils/consts");
 const app = getApp()
 Page({
@@ -68,9 +70,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-            this.setData({
-                showContent:wx.getStorageSync("online")
-            })
+        this.setData({
+            showContent: wx.getStorageSync("online")
+        })
         if (options.type == "new") {
             this.data.mData.maker_phone = options.id
             this.setData({
@@ -154,7 +156,7 @@ Page({
                 title: '至少上传一张图片！'
             })
             return
-        }else if (this.data.mData.nickName == "") {
+        } else if (this.data.mData.nickName == "") {
             wx.showToast({
                 icon: 'none',
                 title: '请填写昵称！'
@@ -172,7 +174,6 @@ Page({
                 this.dbAdd("view")
             }
         }
-        wx.setStorageSync("my_userinfo", this.data.mData)
 
     },
     query() {
@@ -221,8 +222,13 @@ Page({
         })
     },
     update() {
+        if (isEmpty(this.data.mData._id)){
+            return;
+        }
         let condition = {_id: this.data.mData._id}
-
+        let data0 = this.data.mData
+        let _id = this.data.mData._id
+        let _openid = this.data.mData._openid
         delete (this.data.mData["_id"])
         delete (this.data.mData["_openid"])
         console.log("condition", condition)
@@ -239,6 +245,9 @@ Page({
                     icon: 'none',
                     title: '更新数据成功'
                 })
+                data0._id = _id
+                data0._openid = _openid
+                wx.setStorageSync("my_userinfo", data0)
                 let pages = getCurrentPages()
                 pages[pages.length - 2].getData()
                 this.doFinish()
@@ -275,7 +284,7 @@ Page({
         }
         wx.chooseImage({
             sizeType: ['compressed'],
-            count:1,
+            count: 1,
             success: res0 => {
                 wx.showLoading({
                     title: '加载中',
@@ -303,7 +312,7 @@ Page({
     addAvatar() {
         wx.chooseImage({
             sizeType: ['compressed'],
-            count:1,
+            count: 1,
             success: res0 => {
                 wx.showLoading({
                     title: '加载中',
@@ -355,7 +364,7 @@ Page({
         })
     },
     getTopHeight() {
-        if (!this.data.showContent){
+        if (!this.data.showContent) {
             return
         }
         let that = this

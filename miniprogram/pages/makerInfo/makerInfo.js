@@ -1,5 +1,5 @@
 // pages/makerInfo/makerInfo.js
-import {formatCode} from "../../utils/util";
+import {formatCode, isEmpty} from "../../utils/util";
 import consts from "../../utils/consts";
 
 const app = getApp()
@@ -74,8 +74,12 @@ Page({
             })
             return
         }
+        if (isEmpty(this.data.mData._id)){
+            return;
+        }
         let condition = {_id: this.data.mData._id}
-
+        let _id = this.data.mData._id
+        let _openid = this.data.mData._openid
         delete (this.data.mData["_id"])
         delete (this.data.mData["_openid"])
         this.data.mData.pwd = this.data.pwd1
@@ -94,6 +98,8 @@ Page({
                     icon: 'none',
                     title: '更新密码成功'
                 })
+                this.data.mData._id = _id
+                this.data.mData._openid = _openid
                 this.setData({
                     showModal: false,
                 })
