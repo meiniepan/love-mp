@@ -1,4 +1,5 @@
 //app.js
+const {isEmpty} = require("./utils/util");
 const {showModal} = require("./utils/util");
 App({
     onLaunch: function () {
@@ -190,9 +191,13 @@ App({
                     fileID: it.avatar.fileID, // 文件 ID
                     success: res => {
                         // 返回临时文件路径
-                        fileArray.push([it.avatar.fileID, res.tempFilePath])
+                        let url = res.tempFilePath
+                        if (isEmpty(url)){
+                            url = "../../images/user-unlogin.png"
+                        }
+                        fileArray.push([it.avatar.fileID, url])
                         wx.setStorageSync("file_array", fileArray)
-                        it.avatar.url = res.tempFilePath
+                        it.avatar.url = url
                         num++
                         if (num == array.length) {
                             func()
