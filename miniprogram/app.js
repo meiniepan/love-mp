@@ -169,7 +169,6 @@ App({
         }
         console.log("array", array)
         array.forEach(it => {
-
             let has = false
             let index = 0
             for (let i = 0; i < fileArray.length; i++) {
@@ -203,7 +202,16 @@ App({
                             func()
                         }
                     },
-                    fail: console.error
+                    fail: res=>{
+                       let url = "../../images/user-unlogin.png"
+                        fileArray.push([it.avatar.fileID, url])
+                        wx.setStorageSync("file_array", fileArray)
+                        it.avatar.url = url
+                        num++
+                        if (num == array.length) {
+                            func()
+                        }
+                    }
                 })
             }
 
@@ -212,15 +220,21 @@ App({
 
     // 定义调用云函数获取openid
     getOpenid() {
-        wx.cloud.callFunction({
-            name: 'get',
-            complete: res => {
-                var openid = res.result.openid
-                console.log("openid", openid)
-                wx.setStorageSync("openid", openid)
-                return openid
-            }
-        })
+        let openid = wx.getStorageSync("openid")
+        if (!isEmpty(openid)) {
+            return openid
+        }
+        return new Promise(resolve=>{
+            wx.cloud.callFunction({
+                name: 'get',
+                complete: res => {
+                    var openid = res.result.openid
+                    resolve(openid)
+                    console.log("openid", openid)
+                    wx.setStorageSync("openid", openid)
+                }
+            })
+        });
     },
 
     globalData: {

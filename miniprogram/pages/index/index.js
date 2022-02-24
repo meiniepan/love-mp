@@ -11,12 +11,10 @@ Page({
         sex: "女",
     },
 
-    onLoad: function () {
+    onLoad: async function () {
         app.checkUpdate()
-        let openid = wx.getStorageSync("openid")
-        if (openid.length == 0) {
-            openid = app.getOpenid()
-        }
+        let openid = await app.getOpenid()
+        console.log("==openid", openid)
         let sex = ""
         let db_name = consts.db_test
         if (wx.getStorageSync("online")) {
@@ -28,7 +26,7 @@ Page({
             openid: openid,
             sex: sex,
             db_name,
-        },()=>{
+        }, () => {
             wx.startPullDownRefresh()
         })
 
